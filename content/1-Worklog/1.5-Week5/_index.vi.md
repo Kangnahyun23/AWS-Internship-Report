@@ -15,10 +15,10 @@ pre: " <b> 1.5. </b> "
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | - **Chuẩn bị cho Auto Scaling:**<br>+ Tạo AMI (Amazon Machine Image) từ EC2 Instance đã cấu hình sẵn<br>+ Tạo Launch Template từ AMI đó | 06/10/2025 | 06/10/2025 | Cloud Journey - Auto Scaling |
-| 3 | - **Cấu hình Auto Scaling Group (ASG):**<br>+ Tạo ASG sử dụng Launch Template<br>+ Cấu hình Min/Max/Desired capacity<br>+ Tích hợp với Application Load Balancer (ALB) | 07/10/2025 | 07/10/2025 | Cloud Journey - Auto Scaling |
-| 4 | - **Amazon CloudWatch (Phần 1):**<br>+ Tìm hiểu về Metrics và Logs<br>+ Xem các chỉ số CPU, Network của EC2 trên CloudWatch Console | 08/10/2025 | 08/10/2025 | Cloud Journey - CloudWatch |
-| 5 | - **Amazon CloudWatch (Phần 2) & Scaling Policy:**<br>+ Tạo CloudWatch Alarm cảnh báo khi CPU > 70%<br>+ Cấu hình Dynamic Scaling Policy cho ASG dựa trên Alarm này<br>+ Thực hành Stress Test để kích hoạt Auto Scaling | 09/10/2025 | 09/10/2025 | Cloud Journey - CloudWatch |
+| 2 | - **Chuẩn bị cho Auto Scaling:**<br>+ Tạo AMI (Amazon Machine Image) từ EC2 Instance đã cấu hình sẵn<br>+ Tạo Launch Template từ AMI đó | 06/10/2025 | 06/10/2025 | [Cloud Journey - Auto Scaling](https://cloudjourney.awsstudygroup.com/) |
+| 3 | - **Cấu hình Auto Scaling Group (ASG):**<br>+ Tạo ASG sử dụng Launch Template<br>+ Cấu hình Min/Max/Desired capacity<br>+ Tích hợp với Application Load Balancer (ALB) | 07/10/2025 | 07/10/2025 | [Cloud Journey - Auto Scaling](https://cloudjourney.awsstudygroup.com/) |
+| 4 | - **Amazon CloudWatch (Phần 1):**<br>+ Tìm hiểu về Metrics và Logs<br>+ Xem các chỉ số CPU, Network của EC2 trên CloudWatch Console | 08/10/2025 | 08/10/2025 | [Cloud Journey - CloudWatch](https://cloudjourney.awsstudygroup.com/) |
+| 5 | - **Amazon CloudWatch (Phần 2) & Scaling Policy:**<br>+ Tạo CloudWatch Alarm cảnh báo khi CPU > 70%<br>+ Cấu hình Dynamic Scaling Policy cho ASG dựa trên Alarm này<br>+ Thực hành Stress Test để kích hoạt Auto Scaling | 09/10/2025 | 09/10/2025 | [Cloud Journey - CloudWatch](https://cloudjourney.awsstudygroup.com/) |
 | 6 | - **Tổng kết tuần 5:**<br>+ Quan sát quá trình Scale-out và Scale-in<br>+ Tạo CloudWatch Dashboard tổng hợp các chỉ số quan trọng | 10/10/2025 | 10/10/2025 | Self-review |
 
 

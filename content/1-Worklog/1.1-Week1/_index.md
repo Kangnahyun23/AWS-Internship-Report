@@ -16,10 +16,10 @@ pre: " <b> 1.1. </b> "
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| 2 | - **Onboarding & Networking:**<br>+ Meet and greet TEEJ team and Mentors<br>+ Network with FCJ program participants<br>- **Create AWS Account:**<br>+ Sign up for Free Tier account<br>+ Verify payment info and phone number<br>+ Enable MFA for Root account | 08/09/2025 | 08/09/2025 | Cloud Journey - Create Account |
-| 3 | - **Cost Management with AWS Budgets:**<br>+ Create a Budget for cost alerts<br>+ Set up alert thresholds via email<br>- Learn about AWS Support Plans | 09/09/2025 | 09/09/2025 | Cloud Journey - AWS Budgets |
-| 4 | - **Access Management with IAM (Part 1):**<br>+ Create IAM User for Administrator<br>+ Create IAM Group and attach policies<br>+ Set up secure Password Policy | 10/09/2025 | 10/09/2025 | Cloud Journey - IAM |
-| 5 | - **Access Management with IAM (Part 2):**<br>+ Configure MFA for IAM User<br>+ Practice logging in and Switching Roles<br>+ Learn about IAM Policy Structure (JSON) | 11/09/2025 | 11/09/2025 | Cloud Journey - IAM |
+| 2 | - **Onboarding & Networking:**<br>+ Meet and greet TEEJ team and Mentors<br>+ Network with FCJ program participants<br>- **Create AWS Account:**<br>+ Sign up for Free Tier account<br>+ Verify payment info and phone number<br>+ Enable MFA for Root account | 08/09/2025 | 08/09/2025 | [Cloud Journey - Create Account](https://cloudjourney.awsstudygroup.com/) |
+| 3 | - **Cost Management with AWS Budgets:**<br>+ Create a Budget for cost alerts<br>+ Set up alert thresholds via email<br>- Learn about AWS Support Plans | 09/09/2025 | 09/09/2025 | [Cloud Journey - AWS Budgets](https://cloudjourney.awsstudygroup.com/) |
+| 4 | - **Access Management with IAM (Part 1):**<br>+ Create IAM User for Administrator<br>+ Create IAM Group and attach policies<br>+ Set up secure Password Policy | 10/09/2025 | 10/09/2025 | [Cloud Journey - IAM](https://cloudjourney.awsstudygroup.com/) |
+| 5 | - **Access Management with IAM (Part 2):**<br>+ Configure MFA for IAM User<br>+ Practice logging in and Switching Roles<br>+ Learn about IAM Policy Structure (JSON) | 11/09/2025 | 11/09/2025 | [Cloud Journey - IAM](https://cloudjourney.awsstudygroup.com/) |
 | 6 | - **Week 1 Review:**<br>+ Review security settings<br>+ Check Billing Dashboard to ensure no unexpected costs | 12/09/2025 | 12/09/2025 | Self-review |
 
 

@@ -15,10 +15,10 @@ pre: " <b> 1.6. </b> "
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | - **Amazon DynamoDB (Phần 1):**<br>+ Tìm hiểu sự khác biệt giữa SQL (RDS) và NoSQL (DynamoDB)<br>+ Tạo bảng DynamoDB (Partition Key, Sort Key) | 13/10/2025 | 13/10/2025 | Cloud Journey - DynamoDB |
-| 3 | - **Amazon DynamoDB (Phần 2):**<br>+ Thực hành thêm, sửa, xóa (CRUD) item trên Console<br>+ Tìm hiểu về Read/Write Capacity Units (RCU/WCU) | 14/10/2025 | 14/10/2025 | Cloud Journey - DynamoDB |
-| 4 | - **Amazon ElastiCache:**<br>+ Tìm hiểu về In-memory Caching (Redis/Memcached)<br>+ Khởi tạo ElastiCache Redis Cluster<br>+ Kết nối thử từ EC2 vào Redis | 15/10/2025 | 15/10/2025 | Cloud Journey - ElastiCache |
-| 5 | - **AWS CLI Nâng cao:**<br>+ Sử dụng AWS CLI để tương tác với DynamoDB (put-item, get-item)<br>+ Viết script bash đơn giản để backup dữ liệu từ S3 hoặc DynamoDB | 16/10/2025 | 16/10/2025 | Cloud Journey - AWS CLI |
+| 2 | - **Amazon DynamoDB (Phần 1):**<br>+ Tìm hiểu sự khác biệt giữa SQL (RDS) và NoSQL (DynamoDB)<br>+ Tạo bảng DynamoDB (Partition Key, Sort Key) | 13/10/2025 | 13/10/2025 | [Cloud Journey - DynamoDB](https://cloudjourney.awsstudygroup.com/) |
+| 3 | - **Amazon DynamoDB (Phần 2):**<br>+ Thực hành thêm, sửa, xóa (CRUD) item trên Console<br>+ Tìm hiểu về Read/Write Capacity Units (RCU/WCU) | 14/10/2025 | 14/10/2025 | [Cloud Journey - DynamoDB](https://cloudjourney.awsstudygroup.com/) |
+| 4 | - **Amazon ElastiCache:**<br>+ Tìm hiểu về In-memory Caching (Redis/Memcached)<br>+ Khởi tạo ElastiCache Redis Cluster<br>+ Kết nối thử từ EC2 vào Redis | 15/10/2025 | 15/10/2025 | [Cloud Journey - ElastiCache](https://cloudjourney.awsstudygroup.com/) |
+| 5 | - **AWS CLI Nâng cao:**<br>+ Sử dụng AWS CLI để tương tác với DynamoDB (put-item, get-item)<br>+ Viết script bash đơn giản để backup dữ liệu từ S3 hoặc DynamoDB | 16/10/2025 | 16/10/2025 | [Cloud Journey - AWS CLI](https://cloudjourney.awsstudygroup.com/) |
 | 6 | - **Tổng kết tuần 6:**<br>+ Review kiến thức về Database (SQL vs NoSQL vs Cache)<br>+ Hoàn thiện báo cáo giữa kỳ (nếu có) | 17/10/2025 | 17/10/2025 | Self-review |
 
 

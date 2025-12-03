@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>//localhost:1313/vi/</loc>
-    <lastmod>2024-10-02T00:00:00+00:00</lastmod>
+    <lastmod>2025-10-31T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -13,6 +13,19 @@
                 rel="alternate"
                 hreflang="vi"
                 href="//localhost:1313/vi/"
+                />
+  </url><url>
+    <loc>//localhost:1313/vi/1-worklog/</loc>
+    <lastmod>2025-10-31T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/1-worklog/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/1-worklog/"
                 />
   </url><url>
     <loc>//localhost:1313/vi/3-blogstranslated/3.1-blog1/</loc>
@@ -64,18 +77,6 @@
                 href="//localhost:1313/vi/4-eventparticipated/4.2-event2/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/1-worklog/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/1-worklog/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/1-worklog/"
-                />
-  </url><url>
     <loc>//localhost:1313/vi/1-worklog/1.1-week1/</loc>
     <xhtml:link
                 rel="alternate"
@@ -89,7 +90,7 @@
                 />
   </url><url>
     <loc>//localhost:1313/vi/3-blogstranslated/3.2-blog2/</loc>
-    <lastmod>2024-10-02T00:00:00+00:00</lastmod>
+    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -138,7 +139,7 @@
                 />
   </url><url>
     <loc>//localhost:1313/vi/3-blogstranslated/</loc>
-    <lastmod>2024-10-02T00:00:00+00:00</lastmod>
+    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -295,6 +296,19 @@
                 href="//localhost:1313/vi/1-worklog/1.6-week6/"
                 />
   </url><url>
+    <loc>//localhost:1313/vi/1-worklog/1.7-week7/</loc>
+    <lastmod>2025-10-24T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/1-worklog/1.7-week7/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/1-worklog/1.7-week7/"
+                />
+  </url><url>
     <loc>//localhost:1313/vi/7-feedback/</loc>
     <xhtml:link
                 rel="alternate"
@@ -319,19 +333,8 @@
                 href="//localhost:1313/vi/5-workshop/5.7-cleanup/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/1-worklog/1.7-week7/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/1-worklog/1.7-week7/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/1-worklog/1.7-week7/"
-                />
-  </url><url>
     <loc>//localhost:1313/vi/1-worklog/1.8-week8/</loc>
+    <lastmod>2025-10-31T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"

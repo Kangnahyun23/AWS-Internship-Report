@@ -15,10 +15,10 @@ pre: " <b> 1.11. </b> "
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| 2 | - **CI/CD with AWS CodePipeline:**<br>+ Create Repository on AWS CodeCommit (or GitHub)<br>+ Create Build Project with AWS CodeBuild (buildspec.yml)<br>+ Set up Pipeline to auto-deploy on new code commit | 11/17/2025 | 11/17/2025 | Cloud Journey - CI/CD |
-| 3 | - **Monitoring with CloudWatch & X-Ray:**<br>+ Enable X-Ray tracing for Lambda and API Gateway<br>+ Analyze Service Map to find bottlenecks<br>+ View detailed logs on CloudWatch Logs Insights | 11/18/2025 | 11/18/2025 | Cloud Journey - Monitoring |
-| 4 | - **Intro to AWS AppSync (GraphQL):**<br>+ Understand differences between REST API and GraphQL<br>+ Create simple AppSync API connected to DynamoDB<br>+ Test queries and mutations on Console | 11/19/2025 | 11/19/2025 | Cloud Journey - AppSync |
-| 5 | - **Advanced Practice (Optional):**<br>+ Experiment with AWS SAM (Serverless Application Model) to define infrastructure as code<br>+ Deploy application using `sam deploy` command | 11/20/2025 | 11/20/2025 | Cloud Journey - SAM |
+| 2 | - **CI/CD with AWS CodePipeline:**<br>+ Create Repository on AWS CodeCommit (or GitHub)<br>+ Create Build Project with AWS CodeBuild (buildspec.yml)<br>+ Set up Pipeline to auto-deploy on new code commit | 11/17/2025 | 11/17/2025 | [Cloud Journey - CI/CD](https://cloudjourney.awsstudygroup.com/) |
+| 3 | - **Monitoring with CloudWatch & X-Ray:**<br>+ Enable X-Ray tracing for Lambda and API Gateway<br>+ Analyze Service Map to find bottlenecks<br>+ View detailed logs on CloudWatch Logs Insights | 11/18/2025 | 11/18/2025 | [Cloud Journey - Monitoring](https://cloudjourney.awsstudygroup.com/) |
+| 4 | - **Intro to AWS AppSync (GraphQL):**<br>+ Understand differences between REST API and GraphQL<br>+ Create simple AppSync API connected to DynamoDB<br>+ Test queries and mutations on Console | 11/19/2025 | 11/19/2025 | [Cloud Journey - AppSync](https://cloudjourney.awsstudygroup.com/) |
+| 5 | - **Advanced Practice (Optional):**<br>+ Experiment with AWS SAM (Serverless Application Model) to define infrastructure as code<br>+ Deploy application using `sam deploy` command | 11/20/2025 | 11/20/2025 | [Cloud Journey - SAM](https://cloudjourney.awsstudygroup.com/) |
 | 6 | - **Week 11 Review:**<br>+ Review the entire Application Modernization process<br>+ Prepare materials and metrics for final report | 11/21/2025 | 11/21/2025 | Self-review |
 
 

@@ -9,7 +9,7 @@ pre: " <b> 5.2. </b> "
 
 Mục tiêu của chúng ta là tạo ra một giao diện huyền bí, đậm chất "Phù thủy AI" như bản Mockup dưới đây:
 
-![Mystical UI Mockup](/images/mystical_ui_mockup_1764662772665.png)
+<img src="/images/layout_design_final.png" alt="Mystical UI Mockup" width="100%" />
 
 Sử dụng **CSS Grid** và **Flexbox** của Tailwind để tạo layout linh hoạt.
 

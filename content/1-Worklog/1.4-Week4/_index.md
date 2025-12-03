@@ -15,10 +15,10 @@ pre: " <b> 1.4. </b> "
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| 2 | - **Amazon Lightsail Basics:**<br>+ Understand what Lightsail is and its use cases<br>+ Launch a Lightsail Instance (WordPress blueprint) | 29/09/2025 | 29/09/2025 | Cloud Journey - Lightsail |
-| 3 | - **Lightsail Administration:**<br>+ Configure Static IP for Lightsail Instance<br>+ Connect via browser-based SSH and SSH Client<br>+ Manage Firewall on Lightsail console | 30/09/2025 | 30/09/2025 | Cloud Journey - Lightsail |
+| 2 | - **Amazon Lightsail Basics:**<br>+ Understand what Lightsail is and its use cases<br>+ Launch a Lightsail Instance (WordPress blueprint) | 29/09/2025 | 29/09/2025 | [Cloud Journey - Lightsail](https://cloudjourney.awsstudygroup.com/) |
+| 3 | - **Lightsail Administration:**<br>+ Configure Static IP for Lightsail Instance<br>+ Connect via browser-based SSH and SSH Client<br>+ Manage Firewall on Lightsail console | 30/09/2025 | 30/09/2025 | [Cloud Journey - Lightsail](https://cloudjourney.awsstudygroup.com/) |
 | 4 | - **Containerization Basics:**<br>+ Learn about Docker, Containers, and Images<br>+ Install Docker on local machine<br>+ Write a simple Dockerfile for a Web app | 10/01/2025 | 10/01/2025 | Docker Docs |
-| 5 | - **Amazon Lightsail Containers:**<br>+ Create Lightsail Container Service<br>+ Build Docker Image and Push to Lightsail<br>+ Deploy container to public internet | 10/02/2025 | 10/02/2025 | Cloud Journey - Lightsail Containers |
+| 5 | - **Amazon Lightsail Containers:**<br>+ Create Lightsail Container Service<br>+ Build Docker Image and Push to Lightsail<br>+ Deploy container to public internet | 10/02/2025 | 10/02/2025 | [Cloud Journey - Lightsail Containers](https://cloudjourney.awsstudygroup.com/) |
 | 6 | - **Week 4 Review:**<br>+ Compare Pros/Cons of Lightsail vs EC2<br>+ Clean up Lightsail resources to avoid costs | 10/03/2025 | 10/03/2025 | Self-review |
 
 

@@ -15,10 +15,10 @@ pre: " <b> 1.4. </b> "
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | - **Amazon Lightsail cơ bản:**<br>+ Tìm hiểu Lightsail là gì, use case phù hợp<br>+ Khởi tạo một Lightsail Instance (WordPress blueprint) | 29/09/2025 | 29/09/2025 | Cloud Journey - Lightsail |
-| 3 | - **Quản trị Lightsail:**<br>+ Cấu hình Static IP cho Lightsail Instance<br>+ Kết nối SSH qua trình duyệt và SSH Client<br>+ Quản lý Firewall trên giao diện Lightsail | 30/09/2025 | 30/09/2025 | Cloud Journey - Lightsail |
+| 2 | - **Amazon Lightsail cơ bản:**<br>+ Tìm hiểu Lightsail là gì, use case phù hợp<br>+ Khởi tạo một Lightsail Instance (WordPress blueprint) | 29/09/2025 | 29/09/2025 | [Cloud Journey - Lightsail](https://cloudjourney.awsstudygroup.com/) |
+| 3 | - **Quản trị Lightsail:**<br>+ Cấu hình Static IP cho Lightsail Instance<br>+ Kết nối SSH qua trình duyệt và SSH Client<br>+ Quản lý Firewall trên giao diện Lightsail | 30/09/2025 | 30/09/2025 | [Cloud Journey - Lightsail](https://cloudjourney.awsstudygroup.com/) |
 | 4 | - **Containerization cơ bản:**<br>+ Tìm hiểu về Docker, Container và Image<br>+ Cài đặt Docker trên máy local<br>+ Viết Dockerfile đơn giản cho ứng dụng Web | 01/10/2025 | 01/10/2025 | Docker Docs |
-| 5 | - **Amazon Lightsail Containers:**<br>+ Tạo Lightsail Container Service<br>+ Build Docker Image và Push lên Lightsail<br>+ Deploy container ra public internet | 02/10/2025 | 02/10/2025 | Cloud Journey - Lightsail Containers |
+| 5 | - **Amazon Lightsail Containers:**<br>+ Tạo Lightsail Container Service<br>+ Build Docker Image và Push lên Lightsail<br>+ Deploy container ra public internet | 02/10/2025 | 02/10/2025 | [Cloud Journey - Lightsail Containers](https://cloudjourney.awsstudygroup.com/) |
 | 6 | - **Tổng kết tuần 4:**<br>+ So sánh ưu nhược điểm của Lightsail vs EC2<br>+ Dọn dẹp tài nguyên Lightsail để tránh phát sinh chi phí | 03/10/2025 | 03/10/2025 | Self-review |
 
 
