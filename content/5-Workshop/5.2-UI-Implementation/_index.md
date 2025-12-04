@@ -9,7 +9,7 @@ pre: " <b> 5.2. </b> "
 
 Our goal is to create a mystical, "AI Sorcerer" interface like the Mockup below:
 
-![Mystical UI Mockup](/images/mystical_ui_mockup_1764662772665.png)
+<img src="/images/layout_design_final.png" alt="Mystical UI Mockup" width="100%" />
 
 Use **CSS Grid** and **Flexbox** from Tailwind to create flexible layouts.
 
