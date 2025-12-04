@@ -5,120 +5,67 @@ chapter: false
 pre: " <b> 4.1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+### Vietnam Cloud Day 2025: Ho Chi Minh City Connect Edition for Builders
 
-# Bài thu hoạch “GenAI-powered App-DB Modernization workshop”
+**Thời gian:** Thứ Năm, ngày 18 tháng 9 năm 2025, 9:00 - 17:00
+
+**Địa điểm:** Thành phố Hồ Chí Minh
+
+**Vai trò:** Người tham dự
 
 ### Mục Đích Của Sự Kiện
-
-- Chia sẻ best practices trong thiết kế ứng dụng hiện đại
-- Giới thiệu phương pháp DDD và event-driven architecture
-- Hướng dẫn lựa chọn compute services phù hợp
-- Giới thiệu công cụ AI hỗ trợ development lifecycle
+Sự kiện được tổ chức nhằm mang đến cái nhìn toàn diện về hành trình chuyển đổi số trên nền tảng đám mây tại Việt Nam.
+- AWS chia sẻ tầm nhìn và chiến lược về Cloud & GenAI.
+- Doanh nghiệp lớn như Techcombank, U2U Network kể lại trải nghiệm thực tế trong việc hiện đại hóa hạ tầng.
+- Các phiên thảo luận, workshop giúp builder hiểu rõ hơn về Migration, Modernization, Security và GenAI-powered development.
 
 ### Danh Sách Diễn Giả
-
-- **Jignesh Shah** - Director, Open Source Databases
-- **Erica Liu** - Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** - Assc. Specialist SA, Serverless Amazon Web Services
+- Eric Yeo – Country General Manager, AWS
+- Dr. Jens Lottner – CEO, Techcombank
+- Ms. Trang Phung – CEO & Co-Founder, U2U Network
+- Jaime Valles – VP, GM Asia Pacific and Japan, AWS
+- Jeff Johnson – MD, ASEAN, AWS
+- Vũ Văn – CEO, ELSA Corp
+- Nguyễn Hoà Bình – Chairman, Nexttech Group
+- Dieter Botha – CEO, TymeX
+- Hùng Nguyễn Gia – Head of Solutions Architect, AWS
+- Phúc Nguyễn – Solutions Architect, AWS
+- Alex Trần – AI Director, OCB
+- Cùng nhiều chuyên gia khác đến từ LPBank, Ninety Eight, Techcombank…
 
 ### Nội Dung Nổi Bật
+- **Keynote mở màn:** AWS giới thiệu định hướng chiến lược cho Việt Nam và cơ hội cho builder trẻ.
+- **Chia sẻ doanh nghiệp:** Techcombank và U2U Network trình bày hành trình chuyển đổi số thực tế.
+- **Panel “GenAI Revolution”:** Lãnh đạo doanh nghiệp bàn về đổi mới và cách gắn AI với chiến lược kinh doanh.
 
-#### Đưa ra các ảnh hưởng tiêu cực của kiến trúc ứng dụng cũ
+#### Migration & Modernization Track:
+- Case study di chuyển workload quy mô lớn lên AWS.
+- Demo Amazon Q Developer hỗ trợ tự động hóa vòng đời phát triển phần mềm (SDLC).
+- Thảo luận về hiện đại hóa ứng dụng và bảo mật trong kỷ nguyên AI.
 
-- Thời gian release sản phẩm lâu → Mất doanh thu/bỏ lỡ cơ hội
-- Hoạt động kém hiệu quả → Mất năng suất, tốn kém chi phí
-- Không tuân thủ các quy định về bảo mật → Mất an ninh, uy tín
+#### Phiên kỹ thuật:
+- Roadmap hiện đại hóa VMware sang AWS (EKS, RDS, serverless).
+- Bảo mật ở quy mô lớn từ development đến production với GenAI hỗ trợ phân tích.
 
-#### Chuyển đổi sang kiến trúc ứng dụng mới - Microservice Architecture
-
-Chuyển đổi thành hệ thống modular – từng chức năng là một **dịch vụ độc lập** giao tiếp với nhau qua **sự kiện** với 3 trụ cột cốt lõi:
-
-- **Queue Management**: Xử lý tác vụ bất đồng bộ
-- **Caching Strategy:** Tối ưu performance
-- **Message Handling:** Giao tiếp linh hoạt giữa services
-
-#### Domain-Driven Design (DDD)
-
-- **Phương pháp 4 bước**: Xác định domain events → sắp xếp timeline → identify actors → xác định bounded contexts
-- **Case study bookstore**: Minh họa cách áp dụng DDD thực tế
-- **Context mapping**: 7 patterns tích hợp bounded contexts
-
-#### Event-Driven Architecture
-
-- **3 patterns tích hợp**: Publish/Subscribe, Point-to-point, Streaming
-- **Lợi ích**: Loose coupling, scalability, resilience
-- **So sánh sync vs async**: Hiểu rõ trade-offs (sự đánh đổi)
-
-#### Compute Evolution
-
-- **Shared Responsibility Model**: Từ EC2 → ECS → Fargate → Lambda
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value
-- **Functions vs Containers**: Criteria lựa chọn phù hợp
-
-#### Amazon Q Developer
-
-- **SDLC automation**: Từ planning đến maintenance
-- **Code transformation**: Java upgrade, .NET modernization
-- **AWS Transform agents**: VMware, Mainframe, .NET migration
-
-### Những Gì Học Được
-
-#### Tư Duy Thiết Kế
-
-- **Business-first approach**: Luôn bắt đầu từ business domain, không phải technology
-- **Ubiquitous language**: Importance của common vocabulary giữa business và tech teams
-- **Bounded contexts**: Cách identify và manage complexity trong large systems
-
-#### Kiến Trúc Kỹ Thuật
-
-- **Event storming technique**: Phương pháp thực tế để mô hình hóa quy trình kinh doanh
-- Sử dụng **Event-driven communication** thay vì synchronous calls
-- **Integration patterns**: Hiểu khi nào dùng sync, async, pub/sub, streaming
-- **Compute spectrum**: Criteria chọn từ VM → containers → serverless
-
-#### Chiến Lược Hiện Đại Hóa
-
-- **Phased approach**: Không rush, phải có roadmap rõ ràng
-- **7Rs framework**: Nhiều con đường khác nhau tùy thuộc vào đặc điểm của mỗi ứng dụng
-- **ROI measurement**: Cost reduction + business agility
+### Những Gì Tôi Học Được
+- Luôn bắt đầu từ nhu cầu kinh doanh, sau đó chọn công nghệ phù hợp.
+- Migration cần roadmap rõ ràng, thực hiện theo từng giai đoạn thay vì chuyển đổi ồ ạt.
+- Amazon Q Developer có tiềm năng lớn trong việc tăng tốc SDLC.
+- Bảo mật phải tích hợp ngay từ đầu (security by design).
 
 ### Ứng Dụng Vào Công Việc
+- Tổ chức event storming với team để xác định use case GenAI thực tế.
+- Thử nghiệm Amazon Q Developer trong workflow hiện tại.
+- Áp dụng phương pháp phased migration cho các dự án cloud.
+- Tích hợp DevSecOps để đảm bảo bảo mật xuyên suốt quá trình phát triển.
 
-- **Áp dụng DDD** cho project hiện tại: Event storming sessions với business team
-- **Refactor microservices**: Sử dụng bounded contexts để identify service boundaries
-- **Implement event-driven patterns**: Thay thế một số sync calls bằng async messaging
-- **Serverless adoption**: Pilot AWS Lambda cho một số use cases phù hợp
-- **Try Amazon Q Developer**: Integrate vào development workflow để boost productivity
+### Trải Nghiệm Cá Nhân
+Tham gia Vietnam Cloud Day 2025 thực sự là một trải nghiệm mở mang tầm mắt đối với em. Quy mô tổ chức chuyên nghiệp và không khí sôi động của cộng đồng builder tại TP.HCM đã truyền cho em rất nhiều cảm hứng.
+- Em đặc biệt ấn tượng với các case study thực tế từ Techcombank và U2U Network, giúp em hình dung rõ hơn cách các doanh nghiệp lớn đang áp dụng công nghệ đám mây để giải quyết bài toán kinh doanh cụ thể.
+- Việc được lắng nghe trực tiếp từ các lãnh đạo cấp cao của AWS và các doanh nghiệp giúp em hiểu rằng Cloud không chỉ là công nghệ, mà là chiến lược cốt lõi.
+- Không chỉ học hỏi kiến thức, em còn có cơ hội kết nối với các anh chị đi trước trong ngành, nhận được những lời khuyên quý báu về lộ trình phát triển sự nghiệp.
 
-### Trải nghiệm trong event
-
-Tham gia workshop **“GenAI-powered App-DB Modernization”** là một trải nghiệm rất bổ ích, giúp tôi có cái nhìn toàn diện về cách hiện đại hóa ứng dụng và cơ sở dữ liệu bằng các phương pháp và công cụ hiện đại. Một số trải nghiệm nổi bật:
-
-#### Học hỏi từ các diễn giả có chuyên môn cao
-- Các diễn giả đến từ AWS và các tổ chức công nghệ lớn đã chia sẻ **best practices** trong thiết kế ứng dụng hiện đại.
-- Qua các case study thực tế, tôi hiểu rõ hơn cách áp dụng **Domain-Driven Design (DDD)** và **Event-Driven Architecture** vào các project lớn.
-
-#### Trải nghiệm kỹ thuật thực tế
-- Tham gia các phiên trình bày về **event storming** giúp tôi hình dung cách **mô hình hóa quy trình kinh doanh** thành các domain events.
-- Học cách **phân tách microservices** và xác định **bounded contexts** để quản lý sự phức tạp của hệ thống lớn.
-- Hiểu rõ trade-offs giữa **synchronous và asynchronous communication** cũng như các pattern tích hợp như **pub/sub, point-to-point, streaming**.
-
-#### Ứng dụng công cụ hiện đại
-- Trực tiếp tìm hiểu về **Amazon Q Developer**, công cụ AI hỗ trợ SDLC từ lập kế hoạch đến maintenance.
-- Học cách **tự động hóa code transformation** và pilot serverless với **AWS Lambda**, từ đó nâng cao năng suất phát triển.
-
-#### Kết nối và trao đổi
-- Workshop tạo cơ hội trao đổi trực tiếp với các chuyên gia, đồng nghiệp và team business, giúp **nâng cao ngôn ngữ chung (ubiquitous language)** giữa business và tech.
-- Qua các ví dụ thực tế, tôi nhận ra tầm quan trọng của **business-first approach**, luôn bắt đầu từ nhu cầu kinh doanh thay vì chỉ tập trung vào công nghệ.
-
-#### Bài học rút ra
-- Việc áp dụng DDD và event-driven patterns giúp giảm **coupling**, tăng **scalability** và **resilience** cho hệ thống.
-- Chiến lược hiện đại hóa cần **phased approach** và đo lường **ROI**, không nên vội vàng chuyển đổi toàn bộ hệ thống.
-- Các công cụ AI như Amazon Q Developer có thể **boost productivity** nếu được tích hợp vào workflow phát triển hiện tại.
-
-#### Một số hình ảnh khi tham gia sự kiện
-* Thêm các hình ảnh của các bạn tại đây
-> Tổng thể, sự kiện không chỉ cung cấp kiến thức kỹ thuật mà còn giúp tôi thay đổi cách tư duy về thiết kế ứng dụng, hiện đại hóa hệ thống và phối hợp hiệu quả hơn giữa các team.
+### Bài Học Rút Ra
+- **Tư duy chiến lược:** Công nghệ phải luôn phục vụ mục tiêu kinh doanh. Việc lựa chọn dịch vụ AWS nào không chỉ dựa trên tính năng mà còn phải xét đến hiệu quả chi phí và khả năng mở rộng.
+- **Sức mạnh của GenAI:** GenAI đang chuyển dịch từ giai đoạn "thử nghiệm" sang "ứng dụng thực tế" rất nhanh. Để không bị bỏ lại, em cần chủ động cập nhật và làm chủ các công cụ này.
+- **Tầm quan trọng của cộng đồng:** Việc tham gia các sự kiện như thế này giúp cập nhật xu hướng nhanh nhất và mở rộng mạng lưới quan hệ, điều cực kỳ quan trọng cho sự nghiệp sau này.
