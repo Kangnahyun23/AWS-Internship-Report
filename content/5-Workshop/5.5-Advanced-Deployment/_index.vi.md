@@ -1,61 +1,73 @@
 ---
-title: "Tối ưu hóa, Bảo mật & Giám sát"
+title: "Tối ưu hóa & Triển khai Nâng cao"
 weight: 5
 chapter: false
 pre: " <b> 5.5. </b> "
 ---
 
-### 1. AWS WAF (Web Application Firewall)
 
-Bảo vệ ứng dụng khỏi các cuộc tấn công web phổ biến như SQL Injection, XSS, và DDoS.
+Sau khi đã deploy thành công ứng dụng **SorcererXtreme** lên môi trường Internet, công việc của chúng ta chưa dừng lại. Để sản phẩm thực sự "Production-Ready", chúng ta cần thực hiện các bước tinh chỉnh chuyên sâu.
 
-![WAF Security Diagram](/images/waf_security_diagram_1764662992832.png)
+### 1. Tên miền riêng (Custom Domain)
 
-**Cấu hình Rate Limiting:**
-Để chống DDoS tầng ứng dụng, hãy thiết lập quy tắc giới hạn số lượng request:
-*   **Rule Type:** Rate-based rule.
-*   **Rate Limit:** 100 requests / 5 minutes.
-*   **Action:** Block.
-*   **Scope:** Source IP address.
+Mặc định, AWS Amplify cung cấp một đường dẫn khá dài và khó nhớ (ví dụ: `main.d12345.amplifyapp.com`). Việc thiết lập tên miền riêng không chỉ giúp ứng dụng chuyên nghiệp hơn mà còn cải thiện độ tin cậy.
 
-### 2. Amazon CloudFront (CDN)
+**Quy trình thực hiện:**
 
-*   **Caching:** Lưu trữ các file tĩnh tại Edge Location.
-*   **Invalidation:** Khi deploy phiên bản mới, Amplify tự động xóa cache cũ.
+1.  **Mua tên miền:** Bạn có thể mua trực tiếp trên **Amazon Route 53** hoặc các nhà cung cấp khác (Namecheap, GoDaddy).
+2.  **Cấu hình trong Amplify:**
+    *   Vào **App settings** > **Domain management**.
+    *   Nhấn **Add domain** và nhập tên miền của bạn (ví dụ: `sorcererxtreme.vn`).
+3.  **Xác thực DNS:**
+    *   Nếu mua trên Route 53: Amplify tự động cấu hình (Zero-config).
+    *   Nếu mua bên ngoài: Amplify sẽ cung cấp bản ghi CNAME để bạn thêm vào trang quản lý DNS của nhà cung cấp.
+4.  **SSL/TLS:** Amplify sẽ tự động cấp phát và quản lý chứng chỉ SSL miễn phí, đảm bảo ổ khóa xanh (HTTPS) cho website.
 
-### 3. Amazon Route 53 (Custom Domain)
+### 2. Quản lý Biến môi trường (Environment Variables)
 
-Thay vì sử dụng tên miền mặc định dài ngoằng của Amplify (`...amplifyapp.com`), hãy cấu hình tên miền riêng chuyên nghiệp.
+Trong quá trình phát triển, chúng ta thường dùng file `.env.local` để chứa các Key nhạy cảm. Tuy nhiên khi deploy, các file này không được đẩy lên Git.
 
-1.  Mua tên miền trên **Route 53**.
-2.  Trong Amplify Console > **Domain management** > **Add domain**.
-3.  Amplify sẽ tự động tạo bản ghi CNAME và cấp phát chứng chỉ SSL.
+**Tại sao quan trọng?**
+*   **Bảo mật:** Giấu kín các khóa API (như API Gateway Endpoint, Cognito User Pool ID) khỏi mã nguồn công khai.
+*   **Linh hoạt:** Dễ dàng thay đổi cấu hình giữa môi trường Staging và Production mà không cần sửa code.
 
-### 4. Observability: CloudWatch & X-Ray
+**Cách thiết lập:**
+1.  Truy cập Amplify Console > Chọn App > **Environment variables**.
+2.  Nhập các Key tương ứng (ví dụ: `NEXT_PUBLIC_API_URL`, `NEXT_PUBLIC_USER_POOL_ID`).
+3.  Trigger lại quá trình Build để biến môi trường có hiệu lực.
 
-**Amazon CloudWatch (Logs & Metrics):**
-Theo dõi các chỉ số như CPU, Memory, Request count, và Error Rate.
+### 3. Tối ưu SEO cho Next.js (Search Engine Optimization)
 
-**AWS X-Ray (Distributed Tracing):**
-Giúp bạn nhìn thấy toàn bộ hành trình của một Request: Từ Frontend -> API Gateway -> Lambda -> Database.
+Với một ứng dụng hướng tới người dùng (B2C) như xem bói Tarot, việc xuất hiện trên Google là sống còn. Next.js (App Router) hỗ trợ SEO cực mạnh thông qua **Metadata API**.
+
+**Dynamic Metadata:**
+Thay vì chỉ đặt title tĩnh, bạn có thể tạo title động dựa trên lá bài Tarot mà người dùng bốc được:
+
+```tsx
+// app/tarot/[cardId]/page.tsx
+
+export async function generateMetadata({ params }) {
+  const card = await getTarotCard(params.cardId);
+  return {
+    title: `Ý nghĩa lá bài ${card.name} | SorcererXtreme`,
+    description: `Khám phá thông điệp vũ trụ từ lá bài ${card.name}...`,
+    openGraph: {
+      images: [card.imageUrl], // Ảnh hiển thị khi share lên Facebook
+    },
+  }
+}
+```
+
+### 4. Giám sát & Phân tích (Monitoring & Analytics)
+
+Bạn không thể cải thiện những gì bạn không đo lường. Sử dụng Tab **Monitoring** trong Amplify để theo dõi:
+
+*   **Incoming Traffic:** Số lượng người truy cập theo thời gian thực.
+*   **Data Transfer:** Dung lượng băng thông đã sử dụng.
+*   **Error Rate (4XX/5XX):** Phát hiện ngay nếu API bị lỗi hoặc link hỏng.
+*   **Access Logs:** Tải xuống log truy cập để phân tích hành vi người dùng (họ đến từ quốc gia nào, dùng trình duyệt gì).
 
 ---
-
-### Chuyện nghề (My Experience)
-
 {{% notice tip %}}
-**Tiết kiệm chi phí CloudWatch**
-Mặc định, CloudWatch Logs được lưu trữ **vĩnh viễn** (Never Expire). Điều này sẽ ngốn tiền của bạn sau vài tháng.
-**Giải pháp:** Luôn set **Retention Policy** (thời gian lưu trữ) là **1 tuần** hoặc **1 tháng** cho các môi trường Dev/Staging. Chỉ giữ log Production lâu hơn nếu cần Audit.
+**Front-end Tip:** Luôn kiểm tra điểm số **Lighthouse** (trong Chrome DevTools) sau mỗi lần deploy. Một ứng dụng đẹp nhưng load chậm sẽ khiến người dùng rời bỏ ngay lập tức. Hãy tối ưu ảnh (dùng format WebP/AVIF) và lazy-load các component nặng.
 {{% /notice %}}
-
-### Kiểm thử & Xác thực (Verification)
-
-**Test Case 1: Kiểm tra WAF (Rate Limiting)**
-1.  Dùng tool (như JMeter hoặc script Python) gửi liên tục 200 request trong 1 phút đến trang web.
-2.  *Kết quả mong đợi:* Sau khoảng 100 request đầu tiên, các request sau sẽ nhận được lỗi **403 Forbidden**.
-
-**Test Case 2: Kiểm tra Domain & SSL**
-1.  Truy cập `https://your-domain.com`.
-2.  Click vào biểu tượng ổ khóa trên thanh địa chỉ.
-3.  *Kết quả mong đợi:* "Connection is secure". Certificate được cấp bởi Amazon.

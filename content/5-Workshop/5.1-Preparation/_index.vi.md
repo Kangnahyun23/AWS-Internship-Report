@@ -35,18 +35,38 @@ Cấu hình chi tiết:
 *   App Router: **Yes** (Kiến trúc routing mới nhất)
 *   Import Alias: **@/** (Giúp import file gọn gàng hơn)
 
-### 3. Cấu trúc dự án chuẩn (Project Structure)
+### 3. Khởi tạo AWS Amplify (Backend)
 
-Một cấu trúc thư mục khoa học giúp dự án dễ bảo trì về sau:
+Đây là bước quan trọng để tích hợp các tính năng Serverless (Auth, Data) vào dự án.
+Chạy lệnh sau trong thư mục dự án:
 
-![VS Code Project Structure](/images/vscode_project_structure_1764663000000.png)
+```bash
+cd my-serverless-app
+npm create amplify@latest
+```
 
+Khi được hỏi cài đặt, chọn **Yes**. Amplify sẽ tự động tạo thư mục `amplify/` chứa cấu trúc Backend.
+
+### 4. Cài đặt thư viện AWS
+
+Cài đặt các gói SDK cần thiết để Frontend giao tiếp với AWS:
+
+```bash
+npm install aws-amplify @aws-amplify/ui-react
+```
+
+### 5. Cấu trúc dự án chuẩn (Project Structure)
+
+Sau khi cài đặt xong, cấu trúc thư mục sẽ trông như sau:
+
+![VS Code Project Structure](/images/vscode_project_structure.png)
+
+*   `amplify/`: Chứa code Backend (auth.ts, data.ts).
 *   `src/app`: Chứa các Pages và Layout (App Router).
-*   `src/components`: Chứa các UI Components tái sử dụng (Button, Card...).
-*   `src/hooks`: Chứa Custom Hooks (useAuth, useChat...).
-*   `src/lib`: Chứa các hàm tiện ích (utils) và cấu hình (AWS config).
+*   `src/components`: Chứa các UI Components tái sử dụng.
+*   `amplify_outputs.json`: File cấu hình tự động sinh ra (Không sửa file này).
 
-### 4. Cấu hình `tsconfig.json` (Best Practices)
+### 6. Cấu hình `tsconfig.json` (Best Practices)
 
 Để đảm bảo code TypeScript chặt chẽ nhất, hãy cập nhật `tsconfig.json`:
 
@@ -57,7 +77,7 @@ Một cấu trúc thư mục khoa học giúp dự án dễ bảo trì về sau:
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true, // Quan trọng: Bật chế độ nghiêm ngặt
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -81,16 +101,17 @@ Một cấu trúc thư mục khoa học giúp dự án dễ bảo trì về sau:
 }
 ```
 
-### 5. Cài đặt thư viện UI bổ trợ
+### 7. Cài đặt thư viện UI bổ trợ
+
+Để tạo giao diện "Mystical" đep mắt:
 
 ```bash
-cd my-serverless-app
 npm install framer-motion lucide-react clsx tailwind-merge
 ```
 
-### 6. Cấu hình TailwindCSS
+### 8. Cấu hình TailwindCSS
 
-Thiết lập các biến màu (CSS Variables) trong `tailwind.config.ts` để đảm bảo tính nhất quán về thiết kế (Design System).
+Thiết lập biến màu trong `tailwind.config.ts`:
 
 ```typescript
 // tailwind.config.ts
@@ -105,10 +126,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#432c7a", // Màu chủ đạo
+        primary: "#432c7a",
         secondary: "#764ba2",
         accent: "#ffd700",
-        background: "#1a0b2e", // Màu nền tối
+        background: "#1a0b2e",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -124,30 +145,15 @@ export default config;
 
 ### Chuyện nghề (My Experience)
 
-{{% notice note %}}
-**Tại sao lại là TypeScript?**
-Hồi mới làm quen, mình thấy TypeScript khá phiền phức vì cứ báo lỗi đỏ lòm. Nhưng khi dự án phình to lên, chính những dòng báo lỗi đó đã cứu mình khỏi hàng tá bug ngớ ngẩn (như gõ sai tên biến, truyền sai kiểu dữ liệu).
-**Lời khuyên:** Hãy bật `strict: true` ngay từ đầu. "Khổ trước sướng sau"!
+{{% notice tip %}}
+**Amplify Gen 2 vs Gen 1:**
+Nếu bạn từng dùng Amplify CLI (Gen 1) với hàng tá câu lệnh `amplify add auth`, hãy quên nó đi!
+Gen 2 (chúng ta đang dùng) là **Code-First**. Bạn định nghĩa Backend bằng TypeScript (trong folder `amplify/`) thay vì click chuột trên Console. Nó giúp Frontend Dev kiểm soát hạ tầng dễ dàng hơn nhiều.
 {{% /notice %}}
 
 ### Kiểm thử & Xác thực (Verification)
 
-Để đảm bảo môi trường đã sẵn sàng, hãy thực hiện các bước kiểm tra sau:
-
-**Test Case 1: Kiểm tra phiên bản Node.js**
-Mở terminal và chạy:
-```bash
-node -v
-```
-*Kết quả mong đợi:* `v18.x.x` hoặc cao hơn (LTS).
-
-**Test Case 2: Chạy thử server**
-```bash
-npm run dev
-```
-*Kết quả mong đợi:* Terminal hiển thị:
-```
-ready - started server on 0.0.0.0:3000, url: http://localhost:3000
-event - compiled client and server successfully in 1234 ms (150 modules)
-```
-Truy cập trình duyệt thấy logo Next.js xoay vòng là thành công!
+**Test Case: Kiểm tra cài đặt Amplify**
+1.  Mở file `package.json`.
+2.  Tìm trong mục `dependencies`.
+3.  *Kết quả mong đợi:* Phải thấy dòng `"aws-amplify": "^6.x.x"` và `"@aws-amplify/backend": "^1.x.x"`.

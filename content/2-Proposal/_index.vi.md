@@ -1,105 +1,156 @@
 ---
-title: "Bản đề xuất"
-weight: 2
+title: "Đề Án"
+weight: 1
 chapter: false
-pre: " <b> 2. </b> "
+pre: " <b> 1. </b> "
 ---
 
+# SorcererXStreme: Nền tảng Luận giải Ứng dụng AI
 
-Tại phần này, bạn cần tóm tắt các nội dung trong workshop mà bạn **dự tính** sẽ làm.
+## 1. Tóm tắt  
 
-# IoT Weather Platform for Lab Research  
-## Giải pháp AWS Serverless hợp nhất cho giám sát thời tiết thời gian thực  
+Nền tảng SorcererXStreme AI là một nền tảng luận giải tâm linh dựa trên AI, được thiết kế để giúp người dùng khám phá bản thân thông qua nhiều lĩnh vực huyền học Đông và Tây khác nhau, bao gồm Chiêm tinh học (Astrology), Tarot, Thần số học (Numerology) và Tử vi Phương Đông (Eastern Horoscopes). Nền tảng của hệ thống là Lõi Tạo sinh Tăng cường Truy xuất (Retrieval-Augmented Generation - RAG Core), đảm bảo tất cả đầu ra đều dựa trên các nguồn tri thức huyền học được chọn lọc.
 
-### 1. Tóm tắt điều hành  
-IoT Weather Platform được thiết kế dành cho nhóm *ITea Lab* tại TP. Hồ Chí Minh nhằm nâng cao khả năng thu thập và phân tích dữ liệu thời tiết. Nền tảng hỗ trợ tối đa 5 trạm thời tiết, có khả năng mở rộng lên 10–15 trạm, sử dụng thiết bị biên Raspberry Pi kết hợp cảm biến ESP32 để truyền dữ liệu qua MQTT. Nền tảng tận dụng các dịch vụ AWS Serverless để cung cấp giám sát thời gian thực, phân tích dự đoán và tiết kiệm chi phí, với quyền truy cập giới hạn cho 5 thành viên phòng lab thông qua Amazon Cognito.  
+## 2. Vấn đề đặt ra
 
-### 2. Tuyên bố vấn đề  
-*Vấn đề hiện tại*  
-Các trạm thời tiết hiện tại yêu cầu thu thập dữ liệu thủ công, khó quản lý khi có nhiều trạm. Không có hệ thống tập trung cho dữ liệu hoặc phân tích thời gian thực, và các nền tảng bên thứ ba thường tốn kém và quá phức tạp.  
+### Vấn đề
 
-*Giải pháp*  
-Nền tảng sử dụng AWS IoT Core để tiếp nhận dữ liệu MQTT, AWS Lambda và API Gateway để xử lý, Amazon S3 để lưu trữ (bao gồm data lake), và AWS Glue Crawlers cùng các tác vụ ETL để trích xuất, chuyển đổi, tải dữ liệu từ S3 data lake sang một S3 bucket khác để phân tích. AWS Amplify với Next.js cung cấp giao diện web, và Amazon Cognito đảm bảo quyền truy cập an toàn. Tương tự như Thingsboard và CoreIoT, người dùng có thể đăng ký thiết bị mới và quản lý kết nối, nhưng nền tảng này hoạt động ở quy mô nhỏ hơn và phục vụ mục đích sử dụng nội bộ. Các tính năng chính bao gồm bảng điều khiển thời gian thực, phân tích xu hướng và chi phí vận hành thấp.  
+Người dùng hiện đang phải đối mặt với một số hạn chế khi khám phá kiến thức tâm linh và siêu hình:
 
-*Lợi ích và hoàn vốn đầu tư (ROI)*  
-Giải pháp tạo nền tảng cơ bản để các thành viên phòng lab phát triển một nền tảng IoT lớn hơn, đồng thời cung cấp nguồn dữ liệu cho những người nghiên cứu AI phục vụ huấn luyện mô hình hoặc phân tích. Nền tảng giảm bớt báo cáo thủ công cho từng trạm thông qua hệ thống tập trung, đơn giản hóa quản lý và bảo trì, đồng thời cải thiện độ tin cậy dữ liệu. Chi phí hàng tháng ước tính 0,66 USD (theo AWS Pricing Calculator), tổng cộng 7,92 USD cho 12 tháng. Tất cả thiết bị IoT đã được trang bị từ hệ thống trạm thời tiết hiện tại, không phát sinh chi phí phát triển thêm. Thời gian hoàn vốn 6–12 tháng nhờ tiết kiệm đáng kể thời gian thao tác thủ công.  
+*   **Thông tin rời rạc và chưa được xác minh:** Thông tin rải rác trên internet và thường thiếu độ tin cậy hoặc sự đối chiếu thích hợp.
+*   **Khó khăn trong việc so sánh đa ngành:** Kết quả khó so sánh giữa các trường phái tư tưởng Phương Đông và Phương Tây.
+*   **Thiếu cá nhân hóa và tương tác:** Hầu hết các ứng dụng cung cấp các bài đọc dạng tĩnh, thiếu chiều sâu của đối thoại cá nhân hóa và lời khuyên theo ngữ cảnh.
+*   **Nội dung mơ hồ:** Nhiều ứng dụng mang tính giải trí thiếu chiều sâu, chưa được xác thực.
 
-### 3. Kiến trúc giải pháp  
-Nền tảng áp dụng kiến trúc AWS Serverless để quản lý dữ liệu từ 5 trạm dựa trên Raspberry Pi, có thể mở rộng lên 15 trạm. Dữ liệu được tiếp nhận qua AWS IoT Core, lưu trữ trong S3 data lake và xử lý bởi AWS Glue Crawlers và ETL jobs để chuyển đổi và tải vào một S3 bucket khác cho mục đích phân tích. Lambda và API Gateway xử lý bổ sung, trong khi Amplify với Next.js cung cấp bảng điều khiển được bảo mật bởi Cognito.  
+### Giải pháp
 
-![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
+SorcererXStreme AI cung cấp một nền tảng thống nhất, trực quan và thông minh:
 
-![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
+*   **Tương tác trực tiếp:** Người dùng trò chuyện trực tiếp với AI Chatbot, hỏi bất cứ điều gì về tính cách, vận mệnh hoặc các mối quan hệ của họ.
+*   **Luận giải dựa trên mô hình tạo sinh tăng cường truy xuất RAG:** Hệ thống RAG đảm bảo rằng các luận giải dựa trên dữ liệu huyền học đã được xác minh, đảm bảo độ chính xác và chiều sâu.
+*   **Trải nghiệm người dùng phân tầng:** Các tầng Miễn phí và VIP tối ưu hóa trải nghiệm người dùng và tạo ra một luồng doanh thu.
+*   **Thiết kế tối ưu chi phí:** Một thiết kế hiện đại, nhẹ được triển khai nhanh chóng trên kiến trúc serverless AWS tối ưu hóa chi phí.
 
-*Dịch vụ AWS sử dụng*  
-- *AWS IoT Core*: Tiếp nhận dữ liệu MQTT từ 5 trạm, mở rộng lên 15.  
-- *AWS Lambda*: Xử lý dữ liệu và kích hoạt Glue jobs (2 hàm).  
-- *Amazon API Gateway*: Giao tiếp với ứng dụng web.  
-- *Amazon S3*: Lưu trữ dữ liệu thô (data lake) và dữ liệu đã xử lý (2 bucket).  
-- *AWS Glue*: Crawlers lập chỉ mục dữ liệu, ETL jobs chuyển đổi và tải dữ liệu.  
-- *AWS Amplify*: Lưu trữ giao diện web Next.js.  
-- *Amazon Cognito*: Quản lý quyền truy cập cho người dùng phòng lab.  
+### Lợi ích và Lợi tức Đầu tư 
 
-*Thiết kế thành phần*  
-- *Thiết bị biên*: Raspberry Pi thu thập và lọc dữ liệu cảm biến, gửi tới IoT Core.  
-- *Tiếp nhận dữ liệu*: AWS IoT Core nhận tin nhắn MQTT từ thiết bị biên.  
-- *Lưu trữ dữ liệu*: Dữ liệu thô lưu trong S3 data lake; dữ liệu đã xử lý lưu ở một S3 bucket khác.  
-- *Xử lý dữ liệu*: AWS Glue Crawlers lập chỉ mục dữ liệu; ETL jobs chuyển đổi để phân tích.  
-- *Giao diện web*: AWS Amplify lưu trữ ứng dụng Next.js cho bảng điều khiển và phân tích thời gian thực.  
-- *Quản lý người dùng*: Amazon Cognito giới hạn 5 tài khoản hoạt động.  
+| Lợi ích              | Tác động                                                             | Giá trị                                        |
+| :-------------------- | :------------------------------------------------------------------| :--------------------------------------------|
+| **Độ tin cậy dữ liệu** | RAG làm giảm "ảo giác" của mô hình AI và cung cấp các luận giải có thể xác minh nguồn. | Độ tin cậy cao & giữ chân người dùng tốt hơn.  |
+| **Tính trung tâm**     | Hợp nhất dữ liệu huyền học Đông và Tây trong một nền tảng.           | Cơ sở tri thức thống nhất cho người dùng.      |
+| **Khả năng thu lại lợi nhuận** | Mô hình đăng ký VIP mở khóa các tính năng nâng cao. | Dòng doanh thu ổn định và khả năng kinh doanh. |
+| **Chi phí vận hành**   | Kiến trúc serverless AWS được sử dụng.                               | Ước tính $80–$90/tháng cho MVP.                |
 
-### 4. Triển khai kỹ thuật  
-*Các giai đoạn triển khai*  
-Dự án gồm 2 phần — thiết lập trạm thời tiết biên và xây dựng nền tảng thời tiết — mỗi phần trải qua 4 giai đoạn:  
-1. *Nghiên cứu và vẽ kiến trúc*: Nghiên cứu Raspberry Pi với cảm biến ESP32 và thiết kế kiến trúc AWS Serverless (1 tháng trước kỳ thực tập).  
-2. *Tính toán chi phí và kiểm tra tính khả thi*: Sử dụng AWS Pricing Calculator để ước tính và điều chỉnh (Tháng 1).  
-3. *Điều chỉnh kiến trúc để tối ưu chi phí/giải pháp*: Tinh chỉnh (ví dụ tối ưu Lambda với Next.js) để đảm bảo hiệu quả (Tháng 2).  
-4. *Phát triển, kiểm thử, triển khai*: Lập trình Raspberry Pi, AWS services với CDK/SDK và ứng dụng Next.js, sau đó kiểm thử và đưa vào vận hành (Tháng 2–3).  
+## 3. Kiến trúc giải pháp 
 
-*Yêu cầu kỹ thuật*  
-- *Trạm thời tiết biên*: Cảm biến (nhiệt độ, độ ẩm, lượng mưa, tốc độ gió), vi điều khiển ESP32, Raspberry Pi làm thiết bị biên. Raspberry Pi chạy Raspbian, sử dụng Docker để lọc dữ liệu và gửi 1 MB/ngày/trạm qua MQTT qua Wi-Fi.  
-- *Nền tảng thời tiết*: Kiến thức thực tế về AWS Amplify (lưu trữ Next.js), Lambda (giảm thiểu do Next.js xử lý), AWS Glue (ETL), S3 (2 bucket), IoT Core (gateway và rules), và Cognito (5 người dùng). Sử dụng AWS CDK/SDK để lập trình (ví dụ IoT Core rules tới S3). Next.js giúp giảm tải Lambda cho ứng dụng web fullstack.  
+Nền tảng SorcererXStreme sử dụng kiến trúc hybrid serverless trên AWS, được thiết kế tỉ mỉ để xử lý các tương tác người dùng theo thời gian thực, các tác vụ theo lịch trình và giám sát tự động. Thiết kế toàn diện này đảm bảo tính toán chuyên biệt, khả năng mở rộng cao và bảo mật nghiêm ngặt trên tất cả các luồng chức năng.
 
-### 5. Lộ trình & Mốc triển khai  
-- *Trước thực tập (Tháng 0)*: 1 tháng lên kế hoạch và đánh giá trạm cũ.  
-- *Thực tập (Tháng 1–3)*:  
-    - Tháng 1: Học AWS và nâng cấp phần cứng.  
-    - Tháng 2: Thiết kế và điều chỉnh kiến trúc.  
-    - Tháng 3: Triển khai, kiểm thử, đưa vào sử dụng.  
-- *Sau triển khai*: Nghiên cứu thêm trong vòng 1 năm.  
+![Sơ đồ kiến trúc](/images/High_Level_System_Architecture.drawio(2).png)
 
-### 6. Ước tính ngân sách  
-Có thể xem chi phí trên [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01)  
-Hoặc tải [tệp ước tính ngân sách](../attachments/budget_estimation.pdf).  
 
-*Chi phí hạ tầng*  
-- AWS Lambda: 0,00 USD/tháng (1.000 request, 512 MB lưu trữ).  
-- S3 Standard: 0,15 USD/tháng (6 GB, 2.100 request, 1 GB quét).  
-- Truyền dữ liệu: 0,02 USD/tháng (1 GB vào, 1 GB ra).  
-- AWS Amplify: 0,35 USD/tháng (256 MB, request 500 ms).  
-- Amazon API Gateway: 0,01 USD/tháng (2.000 request).  
-- AWS Glue ETL Jobs: 0,02 USD/tháng (2 DPU).  
-- AWS Glue Crawlers: 0,07 USD/tháng (1 crawler).  
-- MQTT (IoT Core): 0,08 USD/tháng (5 thiết bị, 45.000 tin nhắn).  
+### Dịch vụ sử dụng
 
-*Tổng*: 0,7 USD/tháng, 8,40 USD/12 tháng  
-- *Phần cứng*: 265 USD một lần (Raspberry Pi 5 và cảm biến).  
+| Lớp | Dịch vụ | Vai trò và Mối quan hệ |
+| :--- | :--- | :--- |
+| **Edge & Auth** | Amplify, Cognito | - Amplify đảm nhận Hosting Frontend và Định tuyến.<br>- Cognito quản lý xác thực. |
+| **API & Routing** | API Gateway | - Endpoint chính cho tất cả các Lambda Backend và Lambda AI. |
+| **Compute Layer** | AWS Lambda | - Xử lý logic nghiệp vụ và các luồng Async/Sync. |
+| **Data & Integration** | DynamoDB, Parameter Store, NeonDB, Pinecone | - NeonDB(PostgreSQL bên ngoài) là DB chính. <br> - DynamoDB cho lịch sử/truy cập nhanh. <br> - Parameter Store lưu trữ bảo mật. |
+| **AI/ML** | Bedrock, Lambda (Embeddings), S3 |- Bedrock (LLM Model). <br> - S3 lưu trữ tài liệu thô RAG. <br> - Lambda Embeddings tạo vector. |
+| **Async & Monitoring** | EventBridge, SQS, SES, CloudWatch, SNS | - Các luồng Async và Giám sát hoạt động độc lập. |
+| **DevOps** | GitHub Actions, CloudFormation | - GitHub Actions đảm nhận quá trình Build, Test, và CloudFormation do Serverless Framework tạo ra là công cụ deploy chính. |
 
-### 7. Đánh giá rủi ro  
-*Ma trận rủi ro*  
-- Mất mạng: Ảnh hưởng trung bình, xác suất trung bình.  
-- Hỏng cảm biến: Ảnh hưởng cao, xác suất thấp.  
-- Vượt ngân sách: Ảnh hưởng trung bình, xác suất thấp.  
 
-*Chiến lược giảm thiểu*  
-- Mạng: Lưu trữ cục bộ trên Raspberry Pi với Docker.  
-- Cảm biến: Kiểm tra định kỳ, dự phòng linh kiện.  
-- Chi phí: Cảnh báo ngân sách AWS, tối ưu dịch vụ.  
+### Luồng Hoạt động
 
-*Kế hoạch dự phòng*  
-- Quay lại thu thập thủ công nếu AWS gặp sự cố.  
-- Sử dụng CloudFormation để khôi phục cấu hình liên quan đến chi phí.  
+#### 1. Luồng Tương tác API Thời gian thực (Synchronous Flow)
 
-### 8. Kết quả kỳ vọng  
-*Cải tiến kỹ thuật*: Dữ liệu và phân tích thời gian thực thay thế quy trình thủ công. Có thể mở rộng tới 10–15 trạm.  
-*Giá trị dài hạn*: Nền tảng dữ liệu 1 năm cho nghiên cứu AI, có thể tái sử dụng cho các dự án tương lai.
+Luồng này xử lý các yêu cầu chat và luận giải trực tiếp từ người dùng.
+
+* **(1) Tiếp nhận Yêu cầu:** User gửi yêu cầu trực tiếp đến AWS Amplify Endpoint.
+* **(2) Định tuyến & API:** Amplify chuyển tiếp yêu cầu đến API Gateway. API Gateway xác thực token Cognito và chuyển đến Lambda tương ứng (`SyncUser`, `Chatbot`, v.v.).
+* **(3) Xử lý Dữ liệu:** Lambda truy cập Parameter Store để lấy các khóa bí mật và truy cập dữ liệu tại NeonDB, DynamoDB.
+* **(4) RAG và AI:** Lambda Chatbot thực hiện luồng RAG:
+    * Sử dụng Bedrock (Embedding Model) để tạo vector cho câu hỏi.
+    * Truy vấn Pinecone (Vector Database) bằng vector đó.
+    * Gửi ngữ cảnh RAG (Context) đến Bedrock (LLM) để tạo sinh câu trả lời.
+* **(5) Phản hồi:** Lambda trả kết quả về API Gateway -> Amplify -> User.
+
+#### 2. Luồng Thông báo Tự động (Asynchronous Flow)
+
+Luồng này được đơn giản hóa mà không cần RDS.
+
+* **(1) Kích hoạt:** EventBridge Scheduler kích hoạt Lambda TriggerReminder.
+* **(2) Truy vấn Data:** Lambda truy vấn DynamoDB hoặc NeonDB để lấy danh sách người dùng đã đăng ký.
+* **(3) Phân phối:** Lambda tạo nội dung và gửi email thông qua Amazon SES.
+
+#### 3. Luồng triển khai (DevOps)
+
+* **(1) Code Commit:** Developer đẩy code lên GitHub.
+* **(2) Build & Deploy:** GitHub Actions kích hoạt quá trình Build, Test và sử dụng CloudFormation sinh ra từ Serverless Framework để triển khai các hàm Lambda, API Gateway và các tài nguyên khác lên AWS.
+
+
+## 5. Mốc thời gian & Các cột mốc 
+
+Dự án SorcererXStreme sẽ được thực hiện trong khoảng thời gian phát triển tập trung 9 tuần theo mô hình Agile-Iterative để nhanh chóng cung cấp một MVP với các tính năng chính.
+
+### Mốc thời gian Dự án
+
+| Iter  | Thời gian | Tuần | Trọng tâm chính | Các sản phẩm bàn giao chính |
+| :-------------------------------------- | :-------| :-----------| :------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Iter 3: Thiết kế lại & Nguyên mẫu RAG** | 3 Tuần | 1 – 2 – 3 | Thiết kế Nền tảng & Tài liệu|- SRS v2 và SDS v2, Đề án được hoàn thiện.<br> - Sơ đồ kiến trúc AWS và bảng ước tính chi phí. <br> - Dữ liệu RAG được thu thập và pipeline ban đầu được thiết kế.             |
+| **Iter 4: Vai trò & Hệ thống VIP**        | 3 Tuần    | 4 – 5 – 6     | Triển khai Logic Cốt lõi & Ủy quyền | - AWS Cognito được tích hợp để xác thực người dùng. <br> - Logic vai trò Guest/Miễn phí/VIP đầy đủ được triển khai và có thể kiểm thử. <br> - Corpus dữ liệu RAG được xây dựng trên S3.       |
+| **Iter 5: Triển khai AWS & QA** | 3 Tuần    | 7 – 8 – 9     | Triển khai Đám mây & Ổn định | - Hệ thống chạy ổn định trên AWS. <br> - Hoàn thành kiểm thử đầu cuối đầy đủ. AWS Cost and Performance Sheet được hoàn thiện. <br> - Sẵn sàng cho môi trường thực thi. |
+
+## 6. Ước tính ngân sách 
+Dự án được chúng tôi giả định mức sử dụng thấp cho môi trường Demo (khoảng 5.000 yêu cầu/tháng).
+
+### Chi phí Cơ sở Hạ tầng
+
+| Layer |  Dịch vụ AWS | Mục tiêu | Chi phí |
+| :---: | :--- | :--- | :---: |
+| **I. COMPUTE & API** | | | |
+| 1 | **AWS Lambda** | Xử lí Backend Logic (RAG, Compute) | $0.00 |
+| 2 | **Amazon API Gateway** | Synchronous Request Gateway | $0.025 |
+| 3 | **AWS Amplify** | Host Frontend (Next.js) | $2.59 |
+| **II. DATA & STORAGE** | | | |
+| 4 | **Amazon DynamoDB** | Chat History/Rate Limiting | $0.89 |
+| 5 | **Amazon S3** | RAG Knowledge Base/Assets | $0.03 |
+| **III. AI & SECURITY** | | | |
+| 6 | **Amazon Bedrock** | Embedding & LLM/Content Generation | $2.65 |
+| 7 | **Amazon Cognito** | Authentication/User Roles | $0.00 |
+| 8 | **Parameter Store** | Store Master Keys | $0.00 |
+| **IV. ASYNC & MONITORING** | | | |
+| 9 | **EventBridge Scheduler** | Daily Horoscope Trigger | $0.00 |
+| 10 | **Amazon SES** | Email Delivery | $0.48 |
+| 11 | **Amazon CloudWatch** | Logs/Metrics/Alarms | $2.4 |
+| 12 | **Amazon SNS** | Alert Notifications | $0.00 |
+| 13 | **Cloudformation** | Deploy for dev | $0.00 |
+
+Link: [Bảng uớc tính chi phí](https://drive.google.com/file/d/1Cy0ivN1wIOJ8DthIOE4cYYFG1BzESt5m/view?usp=sharing)
+
+### Tổng Chi Phí Dự Án: $9.06/month
+
+
+## 7. Đánh giá rủi ro 
+
+| Rủi ro | Tác động   | Xác suất | Chiến lược giảm thiểu |
+| :---------------------------------| :-------- | :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------|
+| **Ảo giác LLM** | Cao | Trung bình | Triển khai Bộ kiểm tra Thực tế RAG (RAG Fact Checker); sử dụng LLM chất lượng cao; căn cứ câu trả lời vào các nguồn đã được xác minh.      |
+| **Vượt chi phí LLM** | Cao | Trung bình | Thiết lập Cảnh báo Ngân sách AWS (AWS Budget Alerts); triển khai kiểm soát token; sử dụng mô hình LLM phân tầng (Miễn phí so với VIP). |
+| **Độ trễ Truy xuất RAG**            | Trung bình | Trung bình | Tối ưu hóa việc lập chỉ mục RAG (FAISS); tối ưu hóa kích thước chunk và lựa chọn mô hình embedding.                                            |
+| **Vi phạm Bảo mật**                 | Cao        | Thấp       | Sử dụng Cognito để xác thực và Secret Manager để xử lý thông tin xác thực.                                                             |
+
+## 8. Kết quả mong đợi
+
+### Cải tiến kỹ thuật
+
+*   **Độ chính xác theo thời gian thực:** Tích hợp RAG giảm đáng kể "ảo giác" của AI, nâng cao độ tin cậy của các luận giải.
+*   **Khả năng mở rộng:** Kiến trúc serverless AWS đảm bảo khả năng mở rộng tự động để xử lý lưu lượng truy cập đáng kể của người dùng.
+
+### Giá trị dài hạn
+
+*   **Khả năng lợi nhuận:** Mô hình đăng ký VIP tạo ra một con đường rõ ràng, ổn định để tạo doanh thu.
+*   **Nền tảng dữ liệu:** Một cơ sở tri thức huyền học độc quyền, đã được xác minh và được thiết lập như một tài sản có giá trị, có thể tái sử dụng.
+*   **Mở rộng tương lai:** Kiến trúc AWS linh hoạt dễ dàng nâng cấp cho các ứng dụng di động hoặc tính năng trò chuyện bằng giọng nói.
+
+

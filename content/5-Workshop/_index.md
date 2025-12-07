@@ -7,65 +7,58 @@ pre: " <b> 5. </b> "
 
 # Building Serverless Frontend with Next.js & AWS Amplify
 
-### Workshop Overview
+## 1. Workshop Overview
 
-Welcome to the **Building Modern Serverless Frontend** Workshop. This is not just a coding tutorial, but a journey distilled from real-world experience to build a **Production-Ready** web application.
+Welcome to the **Building Modern Serverless Frontend** workshop for the **SorcererXtreme** project.
 
-We will solve the problem: *How to create an AI application with a beautiful interface, fast speed, and high security without managing servers?*
+In this project, the Frontend acts as the "face" of the application, where users directly interact with the mystical features. Our mission is to build a beautiful, smooth interface that communicates effectively with the backend AWS services.
 
-**Target Audience:**
-*   Frontend Developers wanting to learn Cloud & DevOps.
-*   Students wanting a "cool" project with the latest tech.
-*   Anyone who loves Next.js and AWS.
+## 2. Frontend Architecture
 
-### System Architecture
+We will focus on the Client (Frontend) architecture and its Integration Points:
 
-Instead of just running code locally, we will build a complete system on AWS:
+![Frontend Architecture Diagram](/images/frontend_architecture_diagram.png)
 
-![Architecture Diagram](/images/workshop_architecture_diagram_1764662750000.png)
+### Frontend Workflow:
 
-**Data Flow:**
-1.  **User** accesses website via custom domain (Route 53).
-2.  Request passes through **AWS WAF** to filter malicious traffic.
-3.  **CloudFront (CDN)** returns static content (HTML/CSS/JS) instantly from Edge Location.
-4.  When User chats with AI, Request is sent to **API Gateway**.
-5.  **Cognito** authenticates User (ensuring only logged-in users can chat).
-6.  **Lambda** processes logic and calls **RDS Database** to save history.
+1.  **Hosting & Delivery:** Next.js code is hosted and operated on **AWS Amplify**. Users access the web app via a global CDN (CloudFront) built into Amplify, ensuring lightning-fast load times.
+2.  **Authentication:** When a user Logs In, the Frontend communicates directly with **Amazon Cognito**. Cognito returns a "Token" (like an access pass).
+3.  **API Interaction:** For every request (like chatbot or Tarot reading), the Frontend sends this Token along with the request to **Amazon API Gateway**.
+4.  **Response:** The Frontend receives JSON results from the API and renders the UI. The Frontend **does not need to know** what Database or AI model is behind the API; it only cares about the Input (Request) and Output (Response).
 
-### AWS Services Used
+## 3. Frontend Tech Stack
 
-| Category | Service |
-| :--- | :--- |
-| **Compute** | AWS Lambda |
-| **Frontend & Hosting** | AWS Amplify Hosting |
-| **Authentication** | Amazon Cognito |
-| **API** | Amazon API Gateway |
-| **Database** | Amazon RDS (PostgreSQL) |
-| **Security** | AWS WAF |
-| **CDN & DNS** | Amazon CloudFront, Amazon Route 53 |
-| **Monitoring** | Amazon CloudWatch, AWS X-Ray |
+The "weaponry" of a Frontend Developer in this project:
 
-### Estimated Time & Cost
+| Technology | Role | Why use it? |
+| :--- | :--- | :--- |
+| **Next.js (App Router)** | Framework | Strong Server-Side Rendering (SSR) for SEO, powerful Router. |
+| **AWS Amplify (Gen 2)** | Platform | Provides Hosting, automated CI/CD, and fast Cloud connection libraries. |
+| **Tailwind CSS** | Styling | Rapid styling, easy customization for the mystical "Dark Mode". |
+| **Framer Motion** | Animation | Create smooth motion effects (like 3D Tarot card flipping). |
+| **Amplify UI** | Library | Pre-built components for Login/Registration flows. |
+| **Axios / Fetch** | HTTP Client | Used to call API Gateway. |
+
+## 4. Estimated Time & Cost
 
 | Item | Details |
 | :--- | :--- |
-| **Time** | 2-3 hours |
-| **Level** | Intermediate |
-| **Cost** | ~$5-10 (If cleaned up after workshop) |
+| **Time** | 2-3 hours per day |
+| **Cost** | **~$9.06/month** (Total project) |
 
-### Workshop Content
+## 5. Workshop Content
 
-The workshop is divided into 7 parts, from basic to advanced:
+We will follow a standard Frontend development process:
 
-1.  [**Preparation:**](5.1-preparation/) Setting up VS Code like a Senior Dev.
-2.  [**UI Implementation:**](5.2-ui-implementation/) Coding "Mystical" interface with TailwindCSS.
-3.  [**Integration:**](5.3-integration/) Connecting secure APIs with Custom Hooks.
-4.  [**CI/CD Pipeline:**](5.4-deployment/) Automated deployment, no more manual file copying.
-5.  [**Advanced Deployment:**](5.5-advanced-deployment/) Optimizing performance and security (WAF, CDN).
-6.  [**Backend Architecture:**](5.6-backend-architecture/) Understanding the backend system (VPC, RDS).
-7.  [**Cleanup:**](5.7-cleanup/) Cleaning up to avoid unexpected costs.
+1.  [**Preparation:**](5.1-Preparation/) Setup Next.js and Amplify.
+2.  [**UI Implementation:**](5.2-UI-Implementation/) Code Chat & Tarot UI with animations.
+3.  [**Integration:**](5.3-Integration/) Integrate Login (Cognito) and API calls (Gateway).
+4.  [**CI/CD Pipeline:**](5.4-Deployment/) Push code to Git and auto-deploy to the Internet.
+5.  [**Advanced:**](5.5-Advanced-Deployment/) Custom Domain setup and SEO optimization.
+6.  [**Backend Reference:**](5.6-Backend-Architecture/) Understanding RAG model.
+7.  [**Cleanup:**](5.7-Cleanup/) Cleaning up resources.
 
 ---
 {{% notice tip %}}
-**Advice:** Don't just copy-paste code. Read the **"My Experience"** section at the end of each article carefully to avoid the mistakes I spent hours debugging!
+**Frontend Mindset:** In Serverless architecture, Frontend is not just a "renderer". It is also responsible for **Security** (keeping Tokens safe) and **User Experience** (handling Loading states while waiting for AI). Pay attention to these points during the workshop!
 {{% /notice %}}

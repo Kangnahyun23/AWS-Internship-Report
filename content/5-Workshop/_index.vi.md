@@ -7,65 +7,58 @@ pre: " <b> 5. </b> "
 
 # Xây dựng Frontend Serverless với Next.js & AWS Amplify
 
-### Tổng quan Workshop
+## 1. Tổng quan Workshop
 
-Chào mừng bạn đến với Workshop **Xây dựng Frontend Serverless hiện đại**. Đây không chỉ là một bài hướng dẫn code, mà là hành trình đúc kết từ kinh nghiệm thực tế để xây dựng một ứng dụng web **Production-Ready**.
+Chào mừng bạn đến với Workshop **Xây dựng Frontend Serverless hiện đại** cho dự án **SorcererXtreme**.
 
-Chúng ta sẽ cùng nhau giải quyết bài toán: *Làm thế nào để tạo ra một ứng dụng AI có giao diện đẹp, tốc độ nhanh, bảo mật cao mà không cần quản lý server?*
+Trong dự án này, Frontend đóng vai trò là "gương mặt đại diện", nơi người dùng tương tác trực tiếp với các tính năng huyền bí. Nhiệm vụ của chúng ta là xây dựng một giao diện đẹp, mượt mà và giao tiếp hiệu quả với các dịch vụ AWS phía sau.
 
-**Đối tượng phù hợp:**
-*   Frontend Developer muốn học thêm về Cloud & DevOps.
-*   Sinh viên muốn có một đồ án "xịn sò" với công nghệ mới nhất.
-*   Bất kỳ ai yêu thích Next.js và AWS.
+## 2. Kiến trúc Frontend (Frontend Architecture)
 
-### Kiến trúc hệ thống
+Chúng ta sẽ tập trung vào kiến trúc của phần Client (Frontend) và các điểm kết nối (Integration Points):
 
-Thay vì chỉ chạy code trên máy local, chúng ta sẽ xây dựng một hệ thống hoàn chỉnh trên AWS:
+![Frontend Architecture Diagram](/images/frontend_architecture_diagram.png)
 
-![Architecture Diagram](/images/workshop_architecture_diagram_1764662750000.png)
+### Luồng hoạt động của Frontend:
 
-**Luồng dữ liệu (Data Flow):**
-1.  **User** truy cập website qua tên miền riêng (Route 53).
-2.  Request đi qua **AWS WAF** để lọc bỏ các truy cập độc hại.
-3.  **CloudFront (CDN)** trả về nội dung tĩnh (HTML/CSS/JS) ngay lập tức từ Edge Location.
-4.  Khi User chat với AI, Request được gửi đến **API Gateway**.
-5.  **Cognito** xác thực User (đảm bảo chỉ người đã login mới được chat).
-6.  **Lambda** xử lý logic và gọi **RDS Database** để lưu lịch sử.
+1.  **Hosting & Delivery:** Code Next.js được lưu trữ và vận hành trên **AWS Amplify**. Người dùng truy cập web thông qua mạng lưới CDN toàn cầu (CloudFront) tích hợp sẵn trong Amplify, đảm bảo tốc độ tải trang cực nhanh.
+2.  **Authentication (Xác thực):** Khi người dùng Đăng nhập, Frontend sẽ giao tiếp trực tiếp với **Amazon Cognito**. Cognito trả về một "Token" (giống như tấm vé thông hành).
+3.  **API Interaction (Giao tiếp):** Với mỗi yêu cầu (như chatbot hoặc xem bài Tarot), Frontend sẽ gửi Token kèm theo request đến **Amazon API Gateway**.
+4.  **Response:** Frontend nhận kết quả JSON từ API và hiển thị lên giao diện (Render UI). Frontend **không cần biết** phía sau API là Database gì hay AI model nào, nó chỉ quan tâm đến đầu vào (Request) và đầu ra (Response).
 
-### Các dịch vụ AWS được sử dụng
+## 3. Công nghệ Frontend sử dụng (Tech Stack)
 
-| Danh mục | Dịch vụ |
-| :--- | :--- |
-| **Compute** | AWS Lambda |
-| **Frontend & Hosting** | AWS Amplify Hosting |
-| **Authentication** | Amazon Cognito |
-| **API** | Amazon API Gateway |
-| **Database** | Amazon RDS (PostgreSQL) |
-| **Security** | AWS WAF |
-| **CDN & DNS** | Amazon CloudFront, Amazon Route 53 |
-| **Monitoring** | Amazon CloudWatch, AWS X-Ray |
+Bộ công cụ "vũ khí" của Frontend Developer trong dự án này:
 
-### Thời gian & Chi phí ước tính
+| Công nghệ | Vai trò | Tại sao dùng? |
+| :--- | :--- | :--- |
+| **Next.js (App Router)** | Framework | Hỗ trợ Server-Side Rendering (SSR) tốt cho SEO, Router mạnh mẽ. |
+| **AWS Amplify (Gen 2)** | Platform | Cung cấp Hosting, CI/CD tự động và thư viện kết nối Cloud cực nhanh. |
+| **Tailwind CSS** | Styling | Viết CSS nhanh, dễ dàng tùy chỉnh giao diện "Dark Mode" huyền bí. |
+| **Framer Motion** | Animation | Tạo hiệu ứng chuyển động mượt mà (như lật bài Tarot 3D). |
+| **Amplify UI** | Library | Bộ component có sẵn cho phần Đăng nhập/Đăng ký (Login UI). |
+| **Axios / Fetch** | HTTP Client | Dùng để gọi API Gateway. |
+
+## 4. Thời gian & Chi phí ước tính
 
 | Mục | Chi tiết |
 | :--- | :--- |
-| **Thời gian** | 2-3 giờ |
-| **Cấp độ** | Trung cấp (Intermediate) |
-| **Chi phí** | ~$5-10 (Nếu dọn dẹp sau workshop) |
+| **Thời gian** | 2-3 giờ mỗi ngày |
+| **Chi phí** | **~$9.06/tháng** (Toàn bộ dự án) |
 
-### Nội dung thực hành
+## 5. Nội dung thực hành
 
-Workshop được chia thành 7 phần, đi từ cơ bản đến nâng cao:
+Chúng ta sẽ đi qua quy trình phát triển Frontend chuẩn:
 
-1.  [**Chuẩn bị môi trường:**](5.1-preparation/) Thiết lập VS Code chuẩn chỉ như Senior Dev.
-2.  [**UI Implementation:**](5.2-ui-implementation/) Code giao diện "Mystical" với TailwindCSS.
-3.  [**Integration:**](5.3-integration/) Kết nối API bảo mật với Custom Hooks.
-4.  [**CI/CD Pipeline:**](5.4-deployment/) Deploy tự động, không còn cảnh copy file thủ công.
-5.  [**Advanced Deployment:**](5.5-advanced-deployment/) Tối ưu hiệu năng và bảo mật (WAF, CDN).
-6.  [**Backend Architecture:**](5.6-backend-architecture/) Hiểu về hệ thống phía sau (VPC, RDS).
-7.  [**Cleanup:**](5.7-cleanup/) Dọn dẹp để không mất tiền oan.
+1.  [**Chuẩn bị môi trường:**](5.1-Preparation/) Thiết lập Next.js và Amplify.
+2.  [**UI Implementation:**](5.2-UI-Implementation/) Code giao diện Chat & Tarot với hiệu ứng động.
+3.  [**Integration:**](5.3-Integration/) Tích hợp Login (Cognito) và gọi API (Gateway).
+4.  [**CI/CD Pipeline:**](5.4-Deployment/) Đẩy code lên Git và tự động deploy ra Internet.
+5.  [**Advanced:**](5.5-Advanced-Deployment/) Cấu hình tên miền riêng và tối ưu SEO.
+6.  [**Backend Reference:**](5.6-Backend-Architecture/) Tìm hiểu mô hình RAG.
+7.  [**Cleanup:**](5.7-Cleanup/) Dọn dẹp tài nguyên.
 
 ---
 {{% notice tip %}}
-**Lời khuyên:** Đừng chỉ copy-paste code. Hãy đọc kỹ phần **"Chuyện nghề" (My Experience)** ở cuối mỗi bài để tránh những lỗi sai mà mình đã từng mất hàng giờ để debug!
+**Tư duy Frontend:** Trong kiến trúc Serverless, Frontend không chỉ là "người hiển thị". Nó còn chịu trách nhiệm về **Bảo mật** (giữ Token an toàn) và **Tối ưu trải nghiệm** (xử lý Loading state khi chờ AI trả lời). Hãy chú ý các điểm này trong bài thực hành!
 {{% /notice %}}

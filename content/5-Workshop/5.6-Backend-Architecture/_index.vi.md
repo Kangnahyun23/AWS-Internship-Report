@@ -1,51 +1,58 @@
 ---
-title: "Kiến trúc Backend tham khảo (RDS & VPC)"
+title: "Kiến trúc Backend tham khảo (RAG & Database)"
 weight: 6
 chapter: false
 pre: " <b> 5.6. </b> "
 ---
 
-### 1. Mô hình kiến trúc VPC
 
-Backend được triển khai trong một **VPC (Virtual Private Cloud)** để đảm bảo an toàn tối đa:
+Là một Frontend Developer hiện đại, ranh giới giữa Frontend và Backend ngày càng mờ nhạt. Bạn không cần phải viết code SQL hay quản lý server, nhưng bạn bắt buộc phải **hiểu** luồng dữ liệu để tích hợp hiệu quả.
 
-![VPC Architecture Diagram](/images/vpc_rds_architecture_1764663010653.png)
+Hệ thống SorcererXtreme sử dụng kiến trúc **RAG (Retrieval-Augmented Generation)** tiên tiến. Hãy cùng mổ xẻ xem điều gì xảy ra sau khi bạn gọi `fetch('/api/chat')`.
 
-*   **Public Subnet:** Chứa **NAT Gateway** (để server nội bộ truy cập Internet) và **Bastion Host**.
-*   **Private Subnet (App Layer):** Chứa **AWS Lambda**.
-*   **Private Subnet (Data Layer):** Chứa **Amazon RDS (PostgreSQL)**.
+### 1. RAG Flow: Tại sao AI trả lời chính xác?
 
-### 2. Cấu hình Security Group (Firewall)
+Nếu chỉ đơn thuần gửi câu hỏi cho ChatGPT, nó sẽ "chém gió" dựa trên dữ liệu cũ. Để AI đóng vai một "Phù thủy thông thái" am hiểu Tarot, chúng ta dùng quy trình 4 bước:
 
-Để đảm bảo nguyên tắc "Least Privilege" (Quyền tối thiểu), chúng ta thiết lập các quy tắc Security Group chặt chẽ:
+1.  **Retrieval (Truy tìm):**
+    *   Khi User hỏi *"Lá bài The Fool có ý nghĩa gì?"*, câu hỏi được chuyển thành vector (dạng số).
+    *   Hệ thống tìm trong **Pinecone** (Vector DB) những đoạn văn bản trong sách Tarot có ý nghĩa tương đồng nhất.
+2.  **Augmentation (Tăng cường):**
+    *   Hệ thống ghép câu hỏi gốc + nội dung tìm được từ Pinecone thành một Prompt hoàn chỉnh.
+    *   *Prompt: "Dựa vào kiến thức sau [trích đoạn sách...], hãy trả lời câu hỏi: Lá bài The Fool có ý nghĩa gì?"*
+3.  **Generation (Tạo sinh):**
+    *   Gửi Prompt này đến **Amazon Bedrock** (chứa model Claude 3 hoặc Titan).
+    *   AI sẽ trả lời dựa trên chính xác những gì sách viết, tránh bịa đặt.
+4.  **Response:** Frontend nhận câu trả lời cuối cùng và hiển thị.
 
-| Security Group | Inbound Rule | Outbound Rule | Mô tả |
-| :--- | :--- | :--- | :--- |
-| **SG-Lambda** | None (hoặc từ API Gateway nếu cần) | Allow All to **SG-RDS** (Port 5432) | Lambda chỉ được phép gọi vào Database. |
-| **SG-RDS** | Allow TCP 5432 from **SG-Lambda** | None | Database chỉ chấp nhận kết nối từ Lambda, từ chối mọi nguồn khác. |
+### 2. Chiến lược "Đa cơ sở dữ liệu" (Polyglot Persistence)
 
-### 3. VPC Endpoints (PrivateLink)
+Một ứng dụng lớn không bao giờ chỉ dùng một loại Database. Chúng ta dùng đúng công cụ cho đúng việc:
 
-Để Lambda truy cập các dịch vụ AWS khác (như S3, Secrets Manager, CloudWatch) mà không cần đi ra Internet công cộng (qua NAT Gateway), hãy sử dụng **VPC Endpoints**.
+**A. NeonDB (Serverless PostgreSQL)**
+*   **Loại:** Quan hệ (Relational).
+*   **Dữ liệu:** User Profile, Thông tin gói VIP, Giao dịch thanh toán.
+*   **Tại sao:** Dữ liệu tiền bạc cần tính toàn vẹn (ACID) cao nhất. SQL là lựa chọn số 1.
+
+**B. Amazon DynamoDB**
+*   **Loại:** NoSQL (Key-Value).
+*   **Dữ liệu:** Lịch sử Chat, Logs hoạt động.
+*   **Tại sao:** Chat sinh ra hàng triệu bản ghi. DynamoDB có thể ghi/đọc cực nhanh với độ trễ thấp (single-digit millisecond) bất kể data lớn cỡ nào.
+
+**C. Pinecone**
+*   **Loại:** Vector Database.
+*   **Dữ liệu:** Kiến thức Tarot, Chiêm tinh (đã được mã hóa thành Vector).
+*   **Tại sao:** SQL hay NoSQL không thể tìm kiếm theo "ngữ nghĩa" (semantic search). Chỉ Vector DB mới hiểu rằng "Vua tiền" và "King of Pentacles" là liên quan nhau.
+
+### 3. Bảo mật: Mô hình "Pháo đài" (Fortress)
+
+Frontend của bạn (`sorcererxtreme.vn`) là vùng đất công cộng ai cũng vào được. Nhưng Backend là "thánh địa".
+
+*   **Không lộ diện Database:** NeonDB hay Pinecone không bao giờ mở cổng ra Internet.
+*   **API Gateway là lính gác:** Mọi yêu cầu phải đi qua API Gateway. Nó kiểm tra "thẻ bài" (Cognito Token). Nếu không có hoặc hết hạn -> Chặn ngay lập tức (401 Unauthorized).
+*   **Lambda là người vận chuyển:** Chỉ có Lambda function (nằm trong vùng mạng riêng VPC) mới có chìa khóa (Secret Key) để mở cửa vào Database.
 
 ---
-
-### Chuyện nghề (My Experience)
-
-{{% notice warning %}}
-**Tại sao không để Database ở Public Subnet?**
-Nhiều bạn mới học thường để RDS ở Public Subnet cho dễ kết nối từ máy tính cá nhân. **Đừng bao giờ làm thế ở Production!** Hacker có thể brute-force mật khẩu của bạn.
-**Giải pháp:** Luôn để RDS ở Private Subnet. Nếu muốn kết nối từ máy local để debug, hãy dùng **Bastion Host** (nhảy cầu) hoặc **AWS VPN Client**.
+{{% notice info %}}
+**Takeaway:** Khi debug lỗi "tại sao AI trả lời sai?", Frontend Dev có thể đoán ngay: "À, có thể bước **Retrieval** ở Pinecone tìm sai context", thay vì đổ lỗi ngay cho Model AI. Hiểu hệ thống giúp bạn fix bug nhanh hơn!
 {{% /notice %}}
-
-### Kiểm thử & Xác thực (Verification)
-
-**Test Case 1: Kiểm tra kết nối Lambda -> RDS**
-1.  Tạo một Lambda function đơn giản thực hiện query `SELECT NOW();`.
-2.  Gán Lambda vào Private Subnet và SG-Lambda.
-3.  Chạy Test trên AWS Console.
-4.  *Kết quả mong đợi:* Trả về thời gian hiện tại của Database.
-
-**Test Case 2: Kiểm tra chặn truy cập ngoài**
-1.  Thử kết nối trực tiếp đến Endpoint của RDS từ máy tính cá nhân (qua Internet).
-2.  *Kết quả mong đợi:* **Connection Timeout** (Không thể kết nối). Điều này chứng tỏ Database đã được bảo vệ an toàn trong VPC.

@@ -35,18 +35,38 @@ Detailed Configuration:
 *   App Router: **Yes** (Latest routing architecture)
 *   Import Alias: **@/** (Cleaner imports)
 
-### 3. Standard Project Structure
+### 3. Initialize AWS Amplify (Backend)
 
-A scientific folder structure helps with future maintenance:
+This is a crucial step to integrate Serverless features (Auth, Data) into your project.
+Run the following command inside your project folder:
 
-![VS Code Project Structure](/images/vscode_project_structure_1764662831690.png)
+```bash
+cd my-serverless-app
+npm create amplify@latest
+```
 
+When prompt to install, select **Yes**. Amplify will automatically create the `amplify/` folder containing the Backend structure.
+
+### 4. Install AWS Libraries
+
+Install necessary SDK packages for Frontend to communicate with AWS:
+
+```bash
+npm install aws-amplify @aws-amplify/ui-react
+```
+
+### 5. Standard Project Structure
+
+After installation, your folder structure should look like this:
+
+![VS Code Project Structure](/images/vscode_project_structure.png)
+
+*   `amplify/`: Contains Backend code (auth.ts, data.ts).
 *   `src/app`: Contains Pages and Layouts (App Router).
-*   `src/components`: Contains reusable UI Components (Button, Card...).
-*   `src/hooks`: Contains Custom Hooks (useAuth, useChat...).
-*   `src/lib`: Contains utility functions and configurations (AWS config).
+*   `src/components`: Contains reusable UI Components.
+*   `amplify_outputs.json`: Auto-generated config file (Do not edit).
 
-### 4. Configure `tsconfig.json` (Best Practices)
+### 6. Configure `tsconfig.json` (Best Practices)
 
 To ensure strict TypeScript coding, update `tsconfig.json`:
 
@@ -57,7 +77,7 @@ To ensure strict TypeScript coding, update `tsconfig.json`:
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true, // Important: Enable strict mode
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -81,16 +101,17 @@ To ensure strict TypeScript coding, update `tsconfig.json`:
 }
 ```
 
-### 5. Install UI Libraries
+### 7. Install UI Libraries
+
+To create the "Mystical" UI:
 
 ```bash
-cd my-serverless-app
 npm install framer-motion lucide-react clsx tailwind-merge
 ```
 
-### 6. Configure TailwindCSS
+### 8. Configure TailwindCSS
 
-Set up CSS Variables in `tailwind.config.ts` to ensure Design System consistency.
+Set up colors in `tailwind.config.ts`:
 
 ```typescript
 // tailwind.config.ts
@@ -105,10 +126,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#432c7a", // Primary color
+        primary: "#432c7a",
         secondary: "#764ba2",
         accent: "#ffd700",
-        background: "#1a0b2e", // Dark background
+        background: "#1a0b2e",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -124,30 +145,15 @@ export default config;
 
 ### My Experience
 
-{{% notice note %}}
-**Why TypeScript?**
-When I first started, I found TypeScript annoying because of all the red errors. But as the project grew, those errors saved me from dozens of silly bugs (like typos, wrong data types).
-**Advice:** Enable `strict: true` from the start. "Short term pain, long term gain"!
+{{% notice tip %}}
+**Amplify Gen 2 vs Gen 1:**
+If you used Amplify CLI (Gen 1) before with commands like `amplify add auth`, forget it!
+Gen 2 (what we are using) is **Code-First**. You define Backend using TypeScript (in `amplify/` folder) instead of clicking through Console. It gives Frontend Devs much better control over infrastructure.
 {{% /notice %}}
 
 ### Verification & Testing
 
-To ensure the environment is ready, perform the following checks:
-
-**Test Case 1: Check Node.js Version**
-Open terminal and run:
-```bash
-node -v
-```
-*Expected Result:* `v18.x.x` or higher (LTS).
-
-**Test Case 2: Run Development Server**
-```bash
-npm run dev
-```
-*Expected Result:* Terminal shows:
-```
-ready - started server on 0.0.0.0:3000, url: http://localhost:3000
-event - compiled client and server successfully in 1234 ms (150 modules)
-```
-Access browser and see the spinning Next.js logo!
+**Test Case: Check Amplify Installation**
+1.  Open `package.json`.
+2.  Look inside `dependencies`.
+3.  *Expected Result:* You should see `"aws-amplify": "^6.x.x"` and `"@aws-amplify/backend": "^1.x.x"`.
