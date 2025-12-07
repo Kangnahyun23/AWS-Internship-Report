@@ -5,7 +5,6 @@ chapter: false
 pre: " <b> 5.7. </b> "
 ---
 
-# Quy trình dọn dẹp (Cleanup Checklist)
 
 Sau khi hoàn thành Workshop, việc dọn dẹp là **bắt buộc** để tránh phát sinh chi phí "oan" từ AWS. Vì chúng ta sử dụng Services Serverless (Amplify, Lambda, Bedrock), việc dọn dẹp khá đơn giản nhưng cần kỹ lưỡng.
 

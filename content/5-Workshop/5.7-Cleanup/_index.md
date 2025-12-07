@@ -5,7 +5,6 @@ chapter: false
 pre: " <b> 5.7. </b> "
 ---
 
-# Cleanup Checklist
 
 After completing the Workshop, cleaning up is **mandatory** to avoid unexpected AWS charges. Since we use Serverless Services (Amplify, Lambda, Bedrock), cleanup is straightforward but requires attention.
 
