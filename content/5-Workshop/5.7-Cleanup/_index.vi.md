@@ -48,10 +48,9 @@ Nếu trong quá trình làm bạn có tạo thêm tài nguyên ngoài Amplify, 
 
 ### Lời kết
 
-Chúc mừng bạn đã đi đến cuối hành trình! 🎉
+Chúc mừng bạn đã đi đến cuối hành trình! 
 
 Bạn đã hoàn thành việc xây dựng **SorcererXtreme** - một ứng dụng kết hợp giữa nghệ thuật Frontend (Next.js), sức mạnh Cloud (AWS Amplify) và trí tuệ nhân tạo (Bedrock RAG).
 
-Hy vọng kiến thức từ Workshop này sẽ giúp bạn tự tin hơn khi apply vào các vị trí **Cloud-Native Frontend Developer** hoặc **Fullstack Developer**.
 
-Hẹn gặp lại bạn ở các Workshop nâng cao! 👋
+Hẹn gặp lại bạn ở các Workshop nâng cao! 

@@ -48,10 +48,9 @@ To be 100% sure:
 
 ### Conclusion
 
-Congratulations on reaching the end of the journey! 🎉
+Congratulations on reaching the end of the journey! 
 
 You have successfully built **SorcererXtreme** - an application blending Frontend artistry (Next.js), Cloud power (AWS Amplify), and Artificial Intelligence (Bedrock RAG).
 
-We hope the knowledge from this Workshop helps you confidently apply for **Cloud-Native Frontend Developer** or **Fullstack Developer** roles.
 
-See you in advanced Workshops! 👋
+See you in advanced Workshops! 
