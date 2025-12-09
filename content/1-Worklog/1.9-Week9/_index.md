@@ -15,10 +15,10 @@ pre: " <b> 1.9. </b> "
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| 2 | - **Serverless Overview:**<br>+ Learn Serverless concepts and benefits<br>+ Analyze Monolith vs Microservices architecture<br>+ Intro to the trio: Lambda, API Gateway, DynamoDB | 11/03/2025 | 11/03/2025 | [Cloud Journey - Modernize](https://cloudjourney.awsstudygroup.com/) |
-| 3 | - **AWS Lambda & DynamoDB:**<br>+ Write Lambda function (Node.js/Python) to interact with DynamoDB (CRUD)<br>+ Configure IAM Role allowing Lambda access to DynamoDB | 11/04/2025 | 11/04/2025 | [Cloud Journey - Serverless](https://cloudjourney.awsstudygroup.com/) |
-| 4 | - **Amazon API Gateway:**<br>+ Create REST API with API Gateway<br>+ Integrate API Gateway with Lambda function<br>+ Deploy API and test with Postman | 11/05/2025 | 11/05/2025 | [Cloud Journey - Serverless](https://cloudjourney.awsstudygroup.com/) |
-| 5 | - **Building Serverless Backend:**<br>+ Finalize APIs: Create, Read, Update, Delete Item<br>+ Handle errors and response mapping in Lambda | 11/06/2025 | 11/06/2025 | [Cloud Journey - Serverless](https://cloudjourney.awsstudygroup.com/) |
+| 2 | - **Serverless Overview:**<br>+ Learn Serverless concepts and benefits<br>+ Analyze Monolith vs Microservices architecture<br>+ Intro to the trio: Lambda, API Gateway, DynamoDB<br><br>**SorcererXtreme Project:**<br>- **Bedrock Integration:**<br>+ Enable Claude 3 Sonnet Model<br>+ Write Lambda function to invoke Bedrock API | 11/03/2025 | 11/03/2025 | [Cloud Journey - Modernize](https://cloudjourney.awsstudygroup.com/) |
+| 3 | - **AWS Lambda & DynamoDB:**<br>+ Write Lambda function (Node.js/Python) to interact with DynamoDB (CRUD)<br>+ Configure IAM Role allowing Lambda access to DynamoDB<br><br>**SorcererXtreme Project:**<br>- **RAG Logic:**<br>+ Search Vector Pinecone -> Get Context<br>+ Query Bedrock with Context | 11/04/2025 | 11/04/2025 | [Cloud Journey - Serverless](https://cloudjourney.awsstudygroup.com/) |
+| 4 | - **Amazon API Gateway:**<br>+ Create REST API with API Gateway<br>+ Integrate API Gateway with Lambda function<br>+ Deploy API and test with Postman<br><br>**SorcererXtreme Project:**<br>- **Prompt Engineering:**<br>+ Define System Prompt (Sorcerer Persona)<br>+ Refine Prompt Template | 11/05/2025 | 11/05/2025 | [Cloud Journey - Serverless](https://cloudjourney.awsstudygroup.com/) |
+| 5 | - **Building Serverless Backend:**<br>+ Finalize APIs: Create, Read, Update, Delete Item<br>+ Handle errors and response mapping in Lambda<br><br>**SorcererXtreme Project:**<br>- **History Management:**<br>+ Design DynamoDB table for chat history<br>+ Integrate save/read history into Lambda | 11/06/2025 | 11/06/2025 | [Cloud Journey - Serverless](https://cloudjourney.awsstudygroup.com/) |
 | 6 | - **Week 9 Review:**<br>+ Review built Serverless architecture<br>+ Compare cost and performance vs traditional EC2 | 11/07/2025 | 11/07/2025 | Self-review |
 
 
@@ -27,3 +27,6 @@ pre: " <b> 1.9. </b> "
 * Clear understanding of Serverless design mindset (no server management).
 * Successfully built a complete Backend system (API + Compute + Database) without launching any servers.
 * Mastered integration between core services: API Gateway -> Lambda -> DynamoDB.
+* **SorcererXtreme Project:**
+    * Successfully connected to Large Language Model (LLM) Claude 3 Sonnet via Amazon Bedrock.
+    * Built the "brain" of the application: Handling conversation logic and saving chat history.
